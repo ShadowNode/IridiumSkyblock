@@ -74,7 +74,8 @@ public class V1_16_R3 implements NMS {
   @Override
   public void sendWorldBorder(Player player, Color color, double size, Location centerLocation) {
     WorldBorder worldBorder = new WorldBorder();
-    worldBorder.world = ((CraftWorld) centerLocation.getWorld()).getHandle();
+    //Not compatible with arclight
+    //worldBorder.world = ((CraftWorld) centerLocation.getWorld()).getHandle();
     worldBorder.setCenter(centerLocation.getBlockX() + 0.5, centerLocation.getBlockZ() + 0.5);
 
     if (color == Color.OFF) {

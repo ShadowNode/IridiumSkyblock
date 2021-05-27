@@ -187,6 +187,8 @@ public class IridiumSkyblock extends JavaPlugin {
         Bukkit.getOnlinePlayers().forEach(player -> getIslandManager().getIslandViaLocation(player.getLocation()).ifPresent(island -> PlayerUtils.sendBorder(player, island)));
 
         // Auto recalculate islands
+        // Not compatible with Modded
+        /*
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             ListIterator<Integer> islands = getDatabaseManager().getIslandTableManager().getEntries().stream().map(Island::getId).collect(Collectors.toList()).listIterator();
 
@@ -199,6 +201,7 @@ public class IridiumSkyblock extends JavaPlugin {
                 }
             }
         }, 0, getConfiguration().islandRecalculateInterval * 20L);
+        */
 
         // Automatically update all inventories
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> Bukkit.getServer().getOnlinePlayers().forEach(player -> {

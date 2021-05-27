@@ -48,7 +48,8 @@ public class BlockData {
     public void setBlock(Block block) {
         BlockState blockState = block.getState();
         blockState.setType(material);
-        blockState.setRawData(data);
+        //Not compatible with arclight
+        //blockState.setRawData(data);
         blockState.update(true, false);
 
         // We gotta create a new BlockState because the old one is still air and wont be instance of container
