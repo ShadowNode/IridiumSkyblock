@@ -26,11 +26,6 @@ public class PlayerJoinListener implements Listener {
                 PlayerUtils.sendBorder(player, island)
         );
 
-        if (player.isOp()) {
-            Bukkit.getScheduler().runTaskLater(IridiumSkyblock.getInstance(), () ->
-                            player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getConfiguration().prefix + " &7Thanks for using IridiumSkyblock, if you like the plugin, consider donating at &bwww.patreon.com/Peaches_MLG"))
-                    , 5);
-        }
     }
 
 }

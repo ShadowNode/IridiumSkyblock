@@ -142,8 +142,8 @@ public class IridiumSkyblock extends JavaPlugin {
         this.islandManager = new IslandManager();
         this.userManager = new UserManager();
         this.islandManager.createWorld(World.Environment.NORMAL, configuration.worldName);
-        this.islandManager.createWorld(World.Environment.NETHER, configuration.worldName + "_nether");
-        this.islandManager.createWorld(World.Environment.THE_END, configuration.worldName + "_the_end");
+        //this.islandManager.createWorld(World.Environment.NETHER, configuration.worldName + "_nether");
+        //this.islandManager.createWorld(World.Environment.THE_END, configuration.worldName + "_the_end");
 
         this.databaseManager = new DatabaseManager();
         // Try to connect to the database
@@ -211,7 +211,7 @@ public class IridiumSkyblock extends JavaPlugin {
             }
         }), 0, 20);
 
-        resetIslandMissions();
+        //resetIslandMissions();
 
         new Metrics(this, 5825);
 
@@ -221,10 +221,10 @@ public class IridiumSkyblock extends JavaPlugin {
         getLogger().info("Version: " + getDescription().getVersion());
         getLogger().info("");
         getLogger().info("----------------------------------------");
-        UpdateChecker.init(this, 62480)
+        /*UpdateChecker.init(this, 62480)
                 .checkEveryXHours(24)
                 .setDownloadLink(62480)
-                .checkNow();
+                .checkNow();*/
     }
 
     /**
@@ -298,11 +298,11 @@ public class IridiumSkyblock extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockFormListener(), this);
         Bukkit.getPluginManager().registerEvents(new SpawnerSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
+        //Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPistonListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockExplodeListener(), this);
-        Bukkit.getPluginManager().registerEvents(new EntitySpawnListener(), this);
+        //Bukkit.getPluginManager().registerEvents(new EntitySpawnListener(), this);
     }
 
     /**

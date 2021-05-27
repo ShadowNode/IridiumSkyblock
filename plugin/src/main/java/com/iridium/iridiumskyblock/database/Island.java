@@ -250,43 +250,33 @@ public final class Island {
      * @return The center Location of this island
      */
     public Location getCenter(World world) {
-        if (id == 1) return new Location(world, 0, 0, 0);
-        // In this algorithm id  0 will be where we want id 2 to be and 1 will be where 3 is ect
+        //As per SN prefrences convert this to a per Region island type
+        if (id == 1) return new Location(world, 256, 0, 256);
         int n = id - 2;
-
         int r = (int) (Math.floor((Math.sqrt(n + 1) - 1) / 2) + 1);
-        // compute radius : inverse arithmetic sum of 8+16+24+...=
-
         int p = (8 * r * (r - 1)) / 2;
-        // compute total point on radius -1 : arithmetic sum of 8+16+24+...
-
         int en = r * 2;
-        // points by face
-
         int a = (1 + n - p) % (r * 8);
-        // compute de position and shift it so the first is (-r,-r) but (-r+1,-r)
-        // so square can connect
 
         Location location;
 
         switch (a / (r * 2)) {
             case 0:
-                location = new Location(world, (a - r), 0, -r);
+                location = new Location(world, (((a - r) << 5) << 4) + 256, 0, ((-r << 5) << 4) + 256) ;
                 break;
             case 1:
-                location = new Location(world, r, 0, (a % en) - r);
+                location = new Location(world, ((r << 5) << 4) + 256, 0, ((((a % en) - r) << 5) << 4) + 256);
                 break;
             case 2:
-                location = new Location(world, r - (a % en), 0, r);
+                location = new Location(world, (((r - (a % en)) << 5) << 4) + 256, 0, ((r << 5) << 4) + 256);
                 break;
             case 3:
-                location = new Location(world, -r, 0, r - (a % en));
+                location = new Location(world, ((-r << 5) << 4) + 256, 0, (((r - (a % en)) << 5) << 4) + 256);
                 break;
             default:
-                throw new IllegalStateException("Could not find island location with ID: " + id);
+                throw new IllegalStateException("Could not find island location with ID:");
         }
-
-        return location.multiply(IridiumSkyblock.getInstance().getConfiguration().distance).add(0.5, 0, 0.5);
+        return location;
     }
 
     /**
@@ -331,7 +321,7 @@ public final class Island {
     public boolean isInIsland(@NotNull Location location) {
         IslandManager islandManager = IridiumSkyblock.getInstance().getIslandManager();
         World world = location.getWorld();
-        if (Objects.equals(world, islandManager.getWorld()) || Objects.equals(world, islandManager.getNetherWorld()) || Objects.equals(world, islandManager.getEndWorld())) {
+        if (Objects.equals(world, islandManager.getWorld())) {
             return isInIsland(location.getBlockX(), location.getBlockZ());
         } else {
             return false;

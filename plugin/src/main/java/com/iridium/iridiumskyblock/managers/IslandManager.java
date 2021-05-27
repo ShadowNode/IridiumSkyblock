@@ -178,10 +178,12 @@ public class IslandManager {
             // Paste schematic and then teleport the player (this needs to be done sync)
             Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () ->
                     pasteSchematic(island, schematic).thenRun(() -> {
-                        teleportHome(player, island);
+                        //teleportHome(player, island);
                         completableFuture.complete(island);
                     })
             );
+            player.getInventory().clear();
+            teleportHome(player, island);
         });
         return completableFuture;
     }
@@ -197,13 +199,11 @@ public class IslandManager {
         Bukkit.getPluginManager().callEvent(islandRegenEvent);
         if (islandRegenEvent.isCancelled()) return;
         deleteIslandBlocks(island, getWorld(), 0).join();
-        deleteIslandBlocks(island, getNetherWorld(), 0).join();
-        deleteIslandBlocks(island, getEndWorld(), 0).join();
         pasteSchematic(island, schematicConfig).thenRun(() -> {
 
             island.setHome(island.getCenter(IridiumSkyblock.getInstance().getIslandManager().getWorld()).add(schematicConfig.xHome, schematicConfig.yHome, schematicConfig.zHome));
 
-            getEntities(island, getWorld(), getNetherWorld(), getEndWorld()).thenAccept(entities -> Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> {
+            getEntities(island, getWorld()).thenAccept(entities -> Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> {
                         for (Entity entity : entities) {
                             if (entity instanceof Player) {
                                 teleportHome((Player) entity, island, 0);
@@ -214,16 +214,17 @@ public class IslandManager {
                     })
             );
         });
+        Player player = Bukkit.getPlayer(user.getUuid());
+        if (player != null) {
+            player.getInventory().clear();
+            teleportHome(player, island, 0);
+        }
     }
 
     private CompletableFuture<Void> pasteSchematic(@NotNull Island island, @NotNull Schematics.SchematicConfig schematicConfig) {
         CompletableFuture<Void> completableFuture = new CompletableFuture<>();
         IridiumSkyblock.getInstance().getSchematicManager().pasteSchematic(island, getWorld(), schematicConfig.overworld.schematicID, IridiumSkyblock.getInstance().getConfiguration().schematicPastingDelay).thenRun(() ->
-                IridiumSkyblock.getInstance().getSchematicManager().pasteSchematic(island, getNetherWorld(), schematicConfig.nether.schematicID, IridiumSkyblock.getInstance().getConfiguration().schematicPastingDelay).thenRun(() ->
-                        IridiumSkyblock.getInstance().getSchematicManager().pasteSchematic(island, getEndWorld(), schematicConfig.end.schematicID, IridiumSkyblock.getInstance().getConfiguration().schematicPastingDelay).thenRun(() ->
-                                completableFuture.complete(null)
-                        )
-                )
+                completableFuture.complete(null)
         );
         return completableFuture;
     }
@@ -305,7 +306,7 @@ public class IslandManager {
      */
     public @NotNull Optional<Island> getIslandViaLocation(@NotNull Location location) {
         World world = location.getWorld();
-        if (Objects.equals(world, getWorld()) || Objects.equals(world, getNetherWorld()) || Objects.equals(world, getEndWorld())) {
+        if (Objects.equals(world, getWorld())) {
             return IridiumSkyblock.getInstance().getDatabaseManager().getIslandTableManager().getEntries().stream().filter(island -> island.isInIsland(location)).findFirst();
         }
         return Optional.empty();
@@ -486,7 +487,7 @@ public class IslandManager {
                 player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().islandDeleted.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
             }
         });
-        getEntities(island, getWorld(), getEndWorld(), getNetherWorld()).thenAccept(entities ->
+        getEntities(island, getWorld()).thenAccept(entities ->
                 Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () ->
                         entities.stream()
                                 .filter(entity -> entity instanceof Player)
@@ -772,7 +773,7 @@ public class IslandManager {
      * @param island The specified Island
      */
     public void sendIslandBorder(@NotNull Island island) {
-        getEntities(island, getWorld(), getNetherWorld(), getEndWorld()).thenAccept(entities -> {
+        getEntities(island, getWorld()).thenAccept(entities -> {
             for (Entity entity : entities) {
                 if (entity instanceof Player) {
                     PlayerUtils.sendBorder((Player) entity, island);
