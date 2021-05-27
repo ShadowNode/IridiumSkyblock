@@ -1,14 +1,9 @@
 package com.iridium.iridiumskyblock.listeners;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.Island;
-import com.iridium.iridiumskyblock.database.IslandBlocks;
-import com.iridium.iridiumskyblock.database.IslandSpawners;
 import com.iridium.iridiumskyblock.database.User;
-import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.World;
-import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,7 +27,7 @@ public class BlockPlaceListener implements Listener {
             }
             return;
         }
-
+        /*
         XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
         if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().blockPlace, "blockPlace")) {
             event.setCancelled(true);
@@ -46,15 +41,18 @@ public class BlockPlaceListener implements Listener {
             IslandSpawners islandSpawners = IridiumSkyblock.getInstance().getIslandManager().getIslandSpawners(island.get(), creatureSpawner.getSpawnedType());
             islandSpawners.setAmount(islandSpawners.getAmount() + 1);
         }
+        */
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void monitorBlockPlace(BlockPlaceEvent event) {
+        /*
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
         Optional<Island> island = user.getIsland();
         XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
         island.ifPresent(value -> IridiumSkyblock.getInstance().getIslandManager().incrementMission(value, "PLACE:" + material.name(), 1));
+        */
     }
 
 }

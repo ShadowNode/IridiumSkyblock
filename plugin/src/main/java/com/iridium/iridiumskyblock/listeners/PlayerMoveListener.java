@@ -2,10 +2,8 @@ package com.iridium.iridiumskyblock.listeners;
 
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.Island;
-import com.iridium.iridiumskyblock.database.IslandBooster;
 import com.iridium.iridiumskyblock.database.User;
 import com.iridium.iridiumskyblock.utils.StringUtils;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +25,7 @@ public class PlayerMoveListener implements Listener {
                         .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix))
                 );
             }
+            /*
             if (user.isFlying()) {
                 Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
                 if (island.isPresent()) {
@@ -44,6 +43,8 @@ public class PlayerMoveListener implements Listener {
                     }
                 }
             }
+
+             */
         }
         if (event.getTo().getY() < 0 & IridiumSkyblock.getInstance().getConfiguration().voidTeleport) {
             Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());

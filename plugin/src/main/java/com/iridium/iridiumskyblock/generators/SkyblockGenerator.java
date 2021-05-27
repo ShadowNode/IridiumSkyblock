@@ -1,12 +1,17 @@
 package com.iridium.iridiumskyblock.generators;
 
+import com.cryptomorin.xseries.XMaterial;
+import com.iridium.iridiumskyblock.IridiumSkyblock;
 import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.util.noise.SimplexOctaveGenerator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -29,7 +34,20 @@ public class SkyblockGenerator extends ChunkGenerator {
      */
     @Override
     public @NotNull ChunkData generateChunkData(@NotNull World world, @NotNull Random random, int chunkX, int chunkZ, @NotNull BiomeGrid biomeGrid) {
-        return createChunkData(world);
+        ChunkData chunkData = super.createChunkData(world);
+        int waterHeight = IridiumSkyblock.getInstance().getConfiguration().generatorSettings.waterHeight;
+        for(int x = 0; x < 16; x++) {
+            for(int z = 0; z < 16; z++) {
+                for (int y = 1; y <= waterHeight; y++) {
+                    biomeGrid.setBiome(x, y, z, Biome.DEEP_OCEAN);
+                }
+                for (int y = waterHeight + 1; y <= 256; y++) {
+                    biomeGrid.setBiome(x, y, z, Biome.PLAINS);
+                }
+            }
+        }
+
+        return chunkData;
     }
 
     /**

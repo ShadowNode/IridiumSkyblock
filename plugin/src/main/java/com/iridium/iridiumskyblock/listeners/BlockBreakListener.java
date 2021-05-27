@@ -1,10 +1,9 @@
 package com.iridium.iridiumskyblock.listeners;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.database.*;
+import com.iridium.iridiumskyblock.database.Island;
+import com.iridium.iridiumskyblock.database.User;
 import com.iridium.iridiumskyblock.utils.StringUtils;
-import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,11 +24,13 @@ public class BlockBreakListener implements Listener {
             return;
         }
 
-        XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
+        //XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
         if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().blockBreak, "blockBreak")) {
             event.setCancelled(true);
             player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotBreakBlocks.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
-        } else if (material.equals(XMaterial.SPAWNER) && !IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().spawners, "spawners")) {
+        }
+        /*
+        else if (material.equals(XMaterial.SPAWNER) && !IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().spawners, "spawners")) {
             event.setCancelled(true);
             player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotMineSpawners.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
@@ -44,10 +45,13 @@ public class BlockBreakListener implements Listener {
                 islandSpawners.setAmount(islandSpawners.getAmount() - 1);
             }
         }
+        */
+
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     public void monitorBlockBreak(BlockBreakEvent event) {
+        /*
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
         Optional<Island> island = user.getIsland();
@@ -60,6 +64,7 @@ public class BlockBreakListener implements Listener {
                 event.setExpToDrop(event.getExpToDrop() * 2);
             }
         });
+        */
     }
 
 }

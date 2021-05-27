@@ -1,10 +1,10 @@
 package com.iridium.iridiumskyblock.listeners;
 
-import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.User;
 import com.iridium.iridiumskyblock.utils.StringUtils;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,8 +27,8 @@ public class PlayerInteractListener implements Listener {
                 return;
             }
 
-            XMaterial material = XMaterial.matchXMaterial(event.getClickedBlock().getType());
-            if (material.name().contains("DOOR")) {
+
+            if (event.getClickedBlock().getType().name().contains("door")) {
                 if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().doors, "doors")) {
                     event.setCancelled(true);
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotOpenDoors.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
@@ -38,7 +38,7 @@ public class PlayerInteractListener implements Listener {
                     event.setCancelled(true);
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotOpenContainers.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
-            } else if (material.equals(XMaterial.LEVER) || material.name().contains("BUTTON") || material.name().contains("PRESSURE_PLATE")) {
+            } else if (event.getClickedBlock().getType().equals(Material.LEVER) || event.getClickedBlock().getType().name().contains("BUTTON") || event.getClickedBlock().getType().name().contains("PRESSURE_PLATE")) {
                 if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().redstone, "redstone")) {
                     event.setCancelled(true);
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotUseRedstone.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));

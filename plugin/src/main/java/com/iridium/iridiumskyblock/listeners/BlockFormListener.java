@@ -1,22 +1,14 @@
 package com.iridium.iridiumskyblock.listeners;
 
-import com.cryptomorin.xseries.XMaterial;
-import com.iridium.iridiumskyblock.IridiumSkyblock;
-import com.iridium.iridiumskyblock.database.Island;
-import com.iridium.iridiumskyblock.database.IslandUpgrade;
-import com.iridium.iridiumskyblock.upgrades.OresUpgrade;
-import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFormEvent;
-
-import java.util.*;
 
 public class BlockFormListener implements Listener {
 
     @EventHandler
     public void onBlockForm(BlockFormEvent event) {
+        /*
         XMaterial newMaterial = XMaterial.matchXMaterial(event.getNewState().getType());
         // Custom basalt generators should only work in nether
         if (newMaterial.equals(XMaterial.COBBLESTONE) || (newMaterial.equals(XMaterial.BASALT) && event.getBlock().getLocation().getWorld().getEnvironment().equals(World.Environment.NETHER))) {
@@ -38,5 +30,6 @@ public class BlockFormListener implements Listener {
                 if (material != null) event.getNewState().setType(material);
             }
         }
+        */
     }
 }

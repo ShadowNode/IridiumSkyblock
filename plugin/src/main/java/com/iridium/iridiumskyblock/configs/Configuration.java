@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class Configuration {
 
-    public String prefix = "<GRADIENT:09C6F9>&lIridiumSkyblock</GRADIENT:045DE9> &8»";
+    public String prefix = "&8[&5ShadowNode&8]&r ";
     public String worldName = "IridiumSkyblock";
     public String islandCreateTitle = "&b&lIsland Created";
     public String islandCreateSubTitle = "";
@@ -59,7 +59,7 @@ public class Configuration {
     public static class GeneratorSettings {
 
         public GeneratorType generatorType = GeneratorType.SKYBLOCK;
-        public int waterHeight = 95;
+        public int waterHeight = 60;
         public int minOceanFloorLevel = 10;
         public int maxOceanFloorLevel = 25;
         public XMaterial oceanFloorBottomMaterial = XMaterial.GRAVEL;
