@@ -21,7 +21,7 @@ public class RewardsCommand extends Command {
      * The default constructor.
      */
     public RewardsCommand() {
-        super(Collections.singletonList("rewards"), "Claim your Island Rewards", "", true);
+        super(Collections.singletonList("rewards"), "Claim your Island Rewards", "iridiumskyblock.rewards", true);
     }
 
     /**

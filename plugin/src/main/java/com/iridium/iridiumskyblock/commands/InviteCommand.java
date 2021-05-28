@@ -26,7 +26,7 @@ public class InviteCommand extends Command {
      * The default constructor.
      */
     public InviteCommand() {
-        super(Arrays.asList("invite", "invites"), "Invite a user to your Island", "", true);
+        super(Arrays.asList("invite", "invites"), "Invite a user to your Island", "iridiumskyblock.invite", true);
     }
 
     /**

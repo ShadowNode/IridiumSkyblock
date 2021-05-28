@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class Configuration {
 
-    public String prefix = "&8[&5ShadowNode&8]&r ";
+    public String prefix = "<SOLID:555555>[<SOLID:8342B5>ShadowNode<SOLID:555555>]&r ";
     public String worldName = "IridiumSkyblock";
     public String islandCreateTitle = "&b&lIsland Created";
     public String islandCreateSubTitle = "";
@@ -26,6 +26,7 @@ public class Configuration {
     public int schematicPastingDelay = 1;
     public int islandRecalculateInterval = 10;
     public int teleportDelay = 0;
+    public String visualtool = "GLOWSTONE_DUST";
 
     public GeneratorSettings generatorSettings = new GeneratorSettings();
 

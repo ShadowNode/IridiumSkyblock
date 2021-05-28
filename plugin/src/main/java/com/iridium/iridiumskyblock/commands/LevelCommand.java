@@ -18,7 +18,7 @@ public class LevelCommand extends Command {
      * The default constructor.
      */
     public LevelCommand() {
-        super(Arrays.asList("level", "experience"), "Displays Island Level/Experience", "", true);
+        super(Arrays.asList("level", "experience"), "Displays Island Level/Experience", "iridiumskyblock.level", true);
     }
 
     /**

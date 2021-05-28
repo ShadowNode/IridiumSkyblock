@@ -19,7 +19,7 @@ public class FlyCommand extends Command {
      * The default constructor.
      */
     public FlyCommand() {
-        super(Arrays.asList("fly", "flight"), "Toggle Island Flight", "", true);
+        super(Arrays.asList("fly", "flight"), "Toggle Island Flight", "iridiumskyblock.fly", true);
     }
 
     /**

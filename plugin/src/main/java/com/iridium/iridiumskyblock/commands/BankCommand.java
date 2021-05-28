@@ -26,7 +26,7 @@ public class BankCommand extends Command {
      * The default constructor.
      */
     public BankCommand() {
-        super(Collections.singletonList("bank"), "Open your Island bank", "", false);
+        super(Collections.singletonList("bank"), "Open your Island bank", "iridiumskyblock.bank", false);
     }
 
     /**

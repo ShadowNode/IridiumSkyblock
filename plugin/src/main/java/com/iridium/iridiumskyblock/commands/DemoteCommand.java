@@ -26,7 +26,7 @@ public class DemoteCommand extends Command {
      * The default constructor.
      */
     public DemoteCommand() {
-        super(Collections.singletonList("demote"), "Demote a user", "", true);
+        super(Collections.singletonList("demote"), "Demote a user", "iridiumskyblock.demote", true);
     }
 
     /**

@@ -22,7 +22,7 @@ public class EditWarpCommand extends Command {
      * The default constructor.
      */
     public EditWarpCommand() {
-        super(Collections.singletonList("editwarp"), "Edits an Island warp", "", true);
+        super(Collections.singletonList("editwarp"), "Edits an Island warp", "iridiumskyblock.editwarp", true);
     }
 
     /**

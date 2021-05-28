@@ -24,7 +24,7 @@ public class WithdrawCommand extends Command {
      * The default constructor.
      */
     public WithdrawCommand() {
-        super(Collections.singletonList("withdraw"), "Withdraw from your Island bank", "", true);
+        super(Collections.singletonList("withdraw"), "Withdraw from your Island bank", "iridiumskyblock.withdraw", true);
     }
 
     /**

@@ -19,7 +19,7 @@ public class ClearDataCommand extends Command {
      * The default constructor.
      */
     public ClearDataCommand() {
-        super(Collections.singletonList("clearalldata"), "Resets all IridiumSkyblock Data", "iridiumskyblock.clearalldata", false);
+        super(Collections.singletonList("clearalldata"), "Resets all IridiumSkyblock Data", "iridiumskyblock.admin.clearalldata", false);
     }
 
     /**

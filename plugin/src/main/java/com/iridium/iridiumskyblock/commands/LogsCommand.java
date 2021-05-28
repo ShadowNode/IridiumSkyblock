@@ -21,7 +21,7 @@ public class LogsCommand extends Command {
      * The default constructor.
      */
     public LogsCommand() {
-        super(Collections.singletonList("logs"), "Open your Island Logs", "", true);
+        super(Collections.singletonList("logs"), "Open your Island Logs", "iridiumskyblock.logs", true);
     }
 
     /**

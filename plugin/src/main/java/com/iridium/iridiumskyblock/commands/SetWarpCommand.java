@@ -21,7 +21,7 @@ public class SetWarpCommand extends Command {
      * The default constructor.
      */
     public SetWarpCommand() {
-        super(Arrays.asList("setwarp", "createwarp"), "Creates an Island warp", "", true);
+        super(Arrays.asList("setwarp", "createwarp"), "Creates an Island warp", "iridiumskyblock.setwarp", true);
     }
 
     /**

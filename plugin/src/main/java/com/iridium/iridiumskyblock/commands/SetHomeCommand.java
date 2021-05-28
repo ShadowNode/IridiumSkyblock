@@ -21,7 +21,7 @@ public class SetHomeCommand extends Command {
      * The default constructor.
      */
     public SetHomeCommand() {
-        super(Collections.singletonList("sethome"), "Set your Island home", "", true);
+        super(Collections.singletonList("sethome"), "Set your Island home", "iridiumskyblock.sethome", true);
     }
 
     /**

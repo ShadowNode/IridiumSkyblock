@@ -26,7 +26,7 @@ public class PromoteCommand extends Command {
      * The default constructor.
      */
     public PromoteCommand() {
-        super(Collections.singletonList("promote"), "Promote a user", "", true);
+        super(Collections.singletonList("promote"), "Promote a user", "iridiumskyblock.promote", true);
     }
 
     /**

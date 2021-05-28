@@ -27,7 +27,7 @@ public class LeaveCommand extends Command {
      * The default constructor.
      */
     public LeaveCommand() {
-        super(Collections.singletonList("leave"), "Leave your Island", "", true);
+        super(Collections.singletonList("leave"), "Leave your Island", "iridiumskyblock.leave", true);
     }
 
     /**

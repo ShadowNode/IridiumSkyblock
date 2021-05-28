@@ -22,7 +22,7 @@ public class TrustCommand extends Command {
      * The default constructor.
      */
     public TrustCommand() {
-        super(Arrays.asList("trust", "trusted"), "View your Trusted members", "", true);
+        super(Arrays.asList("trust", "trusted"), "View your Trusted members", "iridiumskyblock.trust", true);
     }
 
     /**

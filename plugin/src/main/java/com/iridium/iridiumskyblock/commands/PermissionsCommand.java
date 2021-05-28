@@ -21,7 +21,7 @@ public class PermissionsCommand extends Command {
      * The default constructor.
      */
     public PermissionsCommand() {
-        super(Collections.singletonList("permissions"), "Edit your Island permissions", "", true);
+        super(Collections.singletonList("permissions"), "Edit your Island permissions", "iridiumskyblock.permissions", true);
     }
 
     /**

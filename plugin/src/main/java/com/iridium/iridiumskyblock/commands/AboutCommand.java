@@ -16,13 +16,13 @@ public class AboutCommand extends Command {
     /*
     Please don't add yourself to this list, if you contribute enough I (Peaches) will add you.
     */
-    private final List<String> contributors = Arrays.asList("das_", "SlashRemix");
+    private final List<String> contributors = Arrays.asList("das_", "SlashRemix", "Babymillie");
 
     /**
      * The default constructor.
      */
     public AboutCommand() {
-        super(Collections.singletonList("about"), "Display plugin info", "", false);
+        super(Collections.singletonList("about"), "Display plugin info", "iridiumskyblock.info", false);
     }
 
     /**
@@ -39,7 +39,6 @@ public class AboutCommand extends Command {
         sender.sendMessage(StringUtils.color("&7Plugin Version: &b" + IridiumSkyblock.getInstance().getDescription().getVersion()));
         sender.sendMessage(StringUtils.color("&7Plugin Author: &bPeaches_MLG"));
         sender.sendMessage(StringUtils.color("&7Plugin Contributors: &b" + String.join(", ", contributors)));
-        sender.sendMessage(StringUtils.color("&7Plugin Donations: &bwww.patreon.com/Peaches_MLG"));
     }
 
     /**

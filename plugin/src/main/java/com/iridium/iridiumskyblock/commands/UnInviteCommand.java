@@ -24,7 +24,7 @@ public class UnInviteCommand extends Command {
      * The default constructor.
      */
     public UnInviteCommand() {
-        super(Collections.singletonList("uninvite"), "Revoke an invitation to your Island", "", true);
+        super(Collections.singletonList("uninvite"), "Revoke an invitation to your Island", "iridiumskyblock.uninvite", true);
     }
 
     /**

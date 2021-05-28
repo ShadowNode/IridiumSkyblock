@@ -3,7 +3,9 @@ package com.iridium.iridiumskyblock.listeners;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.User;
+import com.iridium.iridiumskyblock.utils.PlayerUtils;
 import com.iridium.iridiumskyblock.utils.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,10 +25,15 @@ public class PlayerInteractListener implements Listener {
 
         if (event.getClickedBlock() != null) {
             Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getClickedBlock().getLocation());
+
+            String visualtool = IridiumSkyblock.getInstance().getConfiguration().visualtool;
+            if (event.getItem() != null && event.getItem().getType().equals(Material.getMaterial(visualtool))) {
+                Bukkit.getScheduler().runTaskLater(IridiumSkyblock.getInstance(), () -> island.ifPresent(playerIsland -> PlayerUtils.sendBorder(player, playerIsland)), 20L * 12);
+            }
+
             if (!island.isPresent()) {
                 return;
             }
-
 
             if (event.getClickedBlock().getType().name().contains("door")) {
                 if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().doors, "doors")) {

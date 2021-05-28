@@ -22,7 +22,7 @@ public class BorderCommand extends Command {
      * The default constructor.
      */
     public BorderCommand() {
-        super(Collections.singletonList("border"), "Change the Island Border", "", true);
+        super(Collections.singletonList("border"), "Change the Island Border", "iridiumskyblock.border", true);
     }
 
     /**

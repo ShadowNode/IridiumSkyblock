@@ -26,7 +26,7 @@ public class KickCommand extends Command {
      * The default constructor.
      */
     public KickCommand() {
-        super(Collections.singletonList("kick"), "Kick a player", "", true);
+        super(Collections.singletonList("kick"), "Kick a player", "iridiumskyblock.kick", true);
     }
 
     /**

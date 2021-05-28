@@ -25,7 +25,7 @@ public class BoostersCommand extends Command {
      * The default constructor.
      */
     public BoostersCommand() {
-        super(Arrays.asList("booster", "boosters"), "Open the Island Boosters Menu", "", true);
+        super(Arrays.asList("booster", "boosters"), "Open the Island Boosters Menu", "iridiumskyblock.booster", true);
     }
 
     /**

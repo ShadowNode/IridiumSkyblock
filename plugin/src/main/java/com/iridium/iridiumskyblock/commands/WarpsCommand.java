@@ -21,7 +21,7 @@ public class WarpsCommand extends Command {
      * The default constructor.
      */
     public WarpsCommand() {
-        super(Arrays.asList("warp", "warps"), "Open the Island Warps Menu", "", true);
+        super(Arrays.asList("warp", "warps"), "Open the Island Warps Menu", "iridiumskyblock.warp", true);
     }
 
     /**

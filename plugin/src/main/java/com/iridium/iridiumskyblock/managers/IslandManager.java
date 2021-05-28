@@ -178,12 +178,11 @@ public class IslandManager {
             // Paste schematic and then teleport the player (this needs to be done sync)
             Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () ->
                     pasteSchematic(island, schematic).thenRun(() -> {
-                        //teleportHome(player, island);
+                        teleportHome(player, island);
                         completableFuture.complete(island);
                     })
             );
             player.getInventory().clear();
-            teleportHome(player, island);
         });
         return completableFuture;
     }
@@ -217,7 +216,6 @@ public class IslandManager {
         Player player = Bukkit.getPlayer(user.getUuid());
         if (player != null) {
             player.getInventory().clear();
-            teleportHome(player, island, 0);
         }
     }
 
