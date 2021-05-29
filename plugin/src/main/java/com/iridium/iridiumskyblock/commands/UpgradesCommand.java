@@ -47,7 +47,7 @@ public class UpgradesCommand extends Command {
                     IslandUpgrade islandUpgrade = IridiumSkyblock.getInstance().getIslandManager().getIslandUpgrade(island.get(), upgradeName);
                     if (upgrade.upgrades.containsKey(islandUpgrade.getLevel() + 1)) {
                         UpgradeData upgradeData = (UpgradeData) upgrade.upgrades.get(islandUpgrade.getLevel() + 1);
-                        if (PlayerUtils.pay(player, island.get(), upgradeData.crystals, upgradeData.money)) {
+                        if (PlayerUtils.pay(player, island.get(), upgradeData.money)) {
                             islandUpgrade.setLevel(islandUpgrade.getLevel() + 1);
                             IslandLog islandLog = new IslandLog(island.get(), LogAction.UPGRADE_PURCHASE, user, null, 0, upgradeName);
                             IridiumSkyblock.getInstance().getDatabaseManager().getIslandLogTableManager().addEntry(islandLog);

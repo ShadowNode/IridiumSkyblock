@@ -67,7 +67,6 @@ public class UpgradesGUI implements GUI {
             }
             if (upgrade.getValue().upgrades.get(level + 1) instanceof UpgradeData) {
                 UpgradeData upgradeData = (UpgradeData) upgrade.getValue().upgrades.get(level + 1);
-                placeholderList.add(new Placeholder("crystalscost", String.valueOf(upgradeData.crystals)));
                 placeholderList.add(new Placeholder("vaultcost", String.valueOf(upgradeData.money)));
             }
             inventory.setItem(item.slot, ItemStackUtils.makeItem(item, placeholderList));

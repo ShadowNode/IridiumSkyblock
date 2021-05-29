@@ -1,7 +1,6 @@
 package com.iridium.iridiumskyblock;
 
 import com.iridium.iridiumskyblock.api.IridiumSkyblockAPI;
-import com.iridium.iridiumskyblock.bank.BankItem;
 import com.iridium.iridiumskyblock.commands.CommandManager;
 import com.iridium.iridiumskyblock.configs.*;
 import com.iridium.iridiumskyblock.gui.GUI;
@@ -61,20 +60,13 @@ public class IridiumSkyblock extends JavaPlugin {
     private Schematics schematics;
     private Inventories inventories;
     private Permissions permissions;
-    private BlockValues blockValues;
-    private BankItems bankItems;
-    private Missions missions;
     private Upgrades upgrades;
-    private Boosters boosters;
     private Commands commands;
 
     private ChunkGenerator chunkGenerator;
 
-    private List<BankItem> bankItemList;
     private HashMap<String, Permission> permissionList;
-    private HashMap<String, Mission> missionsList;
     private HashMap<String, Upgrade> upgradesList;
-    private HashMap<String, Booster> boosterList;
 
     private Economy economy;
 
@@ -184,22 +176,6 @@ public class IridiumSkyblock extends JavaPlugin {
         // Send island border to all players
         Bukkit.getOnlinePlayers().forEach(player -> getIslandManager().getIslandViaLocation(player.getLocation()).ifPresent(island -> PlayerUtils.sendBorder(player, island)));
 
-        // Auto recalculate islands
-        // Not compatible with Modded
-        /*
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            ListIterator<Integer> islands = getDatabaseManager().getIslandTableManager().getEntries().stream().map(Island::getId).collect(Collectors.toList()).listIterator();
-
-            @Override
-            public void run() {
-                if (!islands.hasNext()) {
-                    islands = getDatabaseManager().getIslandTableManager().getEntries().stream().map(Island::getId).collect(Collectors.toList()).listIterator();
-                } else {
-                    getIslandManager().getIslandById(islands.next()).ifPresent(island -> getIslandManager().recalculateIsland(island));
-                }
-            }
-        }, 0, getConfiguration().islandRecalculateInterval * 20L);
-        */
 
         // Automatically update all inventories
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> Bukkit.getServer().getOnlinePlayers().forEach(player -> {
@@ -209,8 +185,6 @@ public class IridiumSkyblock extends JavaPlugin {
             }
         }), 0, 20);
 
-        //resetIslandMissions();
-
         new Metrics(this, 5825);
 
         getLogger().info("----------------------------------------");
@@ -219,10 +193,7 @@ public class IridiumSkyblock extends JavaPlugin {
         getLogger().info("Version: " + getDescription().getVersion());
         getLogger().info("");
         getLogger().info("----------------------------------------");
-        /*UpdateChecker.init(this, 62480)
-                .checkEveryXHours(24)
-                .setDownloadLink(62480)
-                .checkNow();*/
+
     }
 
     /**
@@ -286,21 +257,10 @@ public class IridiumSkyblock extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityDamageListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityPickupItemListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDropItemListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new ItemCraftListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new EnchantItemListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new FurnaceSmeltListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new PlayerFishListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new BlockGrowListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new PotionBrewListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new EntityDeathListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new BlockFormListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new SpawnerSpawnListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerMoveListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPistonListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockExplodeListener(), this);
-        //Bukkit.getPluginManager().registerEvents(new EntitySpawnListener(), this);
     }
 
     /**
@@ -383,11 +343,7 @@ public class IridiumSkyblock extends JavaPlugin {
         this.schematics = persist.load(Schematics.class);
         this.inventories = persist.load(Inventories.class);
         this.permissions = persist.load(Permissions.class);
-        this.blockValues = persist.load(BlockValues.class);
-        this.bankItems = persist.load(BankItems.class);
-        this.missions = persist.load(Missions.class);
         this.upgrades = persist.load(Upgrades.class);
-        this.boosters = persist.load(Boosters.class);
         this.commands = persist.load(Commands.class);
 
         this.permissionList = new HashMap<>();
@@ -408,28 +364,11 @@ public class IridiumSkyblock extends JavaPlugin {
         this.permissionList.put("pickupItems", permissions.pickupItems);
         this.permissionList.put("dropItems", permissions.dropItems);
         this.permissionList.put("interactEntities", permissions.interactEntities);
-        this.permissionList.put("manageWarps", permissions.manageWarps);
-        this.permissionList.put("withdrawBank", permissions.withdrawBank);
         this.permissionList.put("trust", permissions.trust);
         this.permissionList.put("border", permissions.border);
 
-        this.bankItemList = new ArrayList<>();
-        this.bankItemList.add(bankItems.crystalsBankItem);
-        this.bankItemList.add(bankItems.experienceBankItem);
-        this.bankItemList.add(bankItems.moneyBankItem);
-
-        this.missionsList = new HashMap<>(missions.missions);
-
         this.upgradesList = new HashMap<>();
         if (upgrades.sizeUpgrade.enabled) upgradesList.put("size", upgrades.sizeUpgrade);
-        if (upgrades.oresUpgrade.enabled) upgradesList.put("generator", upgrades.oresUpgrade);
-        if (upgrades.warpsUpgrade.enabled) upgradesList.put("warp", upgrades.warpsUpgrade);
-
-        this.boosterList = new HashMap<>();
-        if (boosters.islandExperienceBooster.enabled) boosterList.put("experience", boosters.islandExperienceBooster);
-        if (boosters.islandFlightBooster.enabled) boosterList.put("flight", boosters.islandFlightBooster);
-        if (boosters.islandFarmingBooster.enabled) boosterList.put("farming", boosters.islandFarmingBooster);
-        if (boosters.islandSpawnerBooster.enabled) boosterList.put("spawner", boosters.islandSpawnerBooster);
 
         File schematicFolder = new File(getDataFolder(), "schematics");
         if (!schematicFolder.exists()) {
@@ -477,11 +416,7 @@ public class IridiumSkyblock extends JavaPlugin {
         this.persist.save(schematics);
         this.persist.save(inventories);
         this.persist.save(permissions);
-        this.persist.save(blockValues);
-        this.persist.save(bankItems);
-        this.persist.save(missions);
         this.persist.save(upgrades);
-        this.persist.save(boosters);
         this.persist.save(commands);
     }
 

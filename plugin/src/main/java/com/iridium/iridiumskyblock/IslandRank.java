@@ -10,10 +10,11 @@ import java.util.Arrays;
 @Getter
 public enum IslandRank {
 
-    OWNER(4),
-    CO_OWNER(3),
-    MODERATOR(2),
-    MEMBER(1),
+    OWNER(5),
+    CO_OWNER(4),
+    MODERATOR(3),
+    MEMBER(2),
+    TRUSTED( 1),
     VISITOR(0);
 
     /**

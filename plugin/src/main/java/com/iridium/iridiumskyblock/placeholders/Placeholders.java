@@ -21,17 +21,9 @@ public class Placeholders {
                 User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
                 return user.getIsland().map(island -> island.getOwner().getName()).orElse("N/A");
             })
-            .put("island_rank", player -> {
-                User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
-                return user.getIsland().map(island -> String.valueOf(island.getRank())).orElse("N/A");
-            })
             .put("island_level", player -> {
                 User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
                 return user.getIsland().map(island -> String.valueOf(island.getLevel())).orElse("N/A");
-            })
-            .put("island_value", player -> {
-                User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
-                return user.getIsland().map(island -> String.valueOf(island.getValue())).orElse("N/A");
             })
             .put("island_experience", player -> {
                 User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
@@ -55,17 +47,9 @@ public class Placeholders {
                 Optional<Island> islandOptional = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
                 return islandOptional.map(island -> island.getOwner().getName()).orElse("N/A");
             })
-            .put("current_island_rank", player -> {
-                Optional<Island> islandOptional = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
-                return islandOptional.map(island -> String.valueOf(island.getRank())).orElse("N/A");
-            })
             .put("current_island_level", player -> {
                 Optional<Island> islandOptional = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
                 return islandOptional.map(island -> String.valueOf(island.getLevel())).orElse("N/A");
-            })
-            .put("current_island_value", player -> {
-                Optional<Island> islandOptional = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
-                return islandOptional.map(island -> String.valueOf(island.getValue())).orElse("N/A");
             })
             .put("current_island_experience", player -> {
                 Optional<Island> islandOptional = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());

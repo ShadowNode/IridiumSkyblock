@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 public class UpgradeData {
     public int money;
-    public int crystals;
 
     @JsonIgnore
     public List<Placeholder> getPlaceholders() {

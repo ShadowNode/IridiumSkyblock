@@ -19,11 +19,8 @@ public class LogInventoryConfig {
     public Item IslandMembers;
     public Item IslandTrusts;
     public Item IslandInvites;
-    public Item IslandBank;
-    public Item IslandBoosters;
     public Item IslandUpgrades;
-    public Item IslandRewards;
-    
+
     public String USER_JOINED;
     public String USER_KICKED;
     public String USER_LEFT;

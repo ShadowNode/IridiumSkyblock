@@ -18,12 +18,9 @@ public class PlaceholderBuilder {
     public PlaceholderBuilder applyIslandPlaceholders(Island island) {
         placeholderList.add(new Placeholder("island_name", island.getName()));
         placeholderList.add(new Placeholder("island_owner", island.getOwner().getName()));
-        placeholderList.add(new Placeholder("island_value", String.valueOf(island.getValue())));
-        placeholderList.add(new Placeholder("island_rank", String.valueOf(island.getRank())));
+
         placeholderList.add(new Placeholder("island_level", String.valueOf(island.getLevel())));
         placeholderList.add(new Placeholder("island_create", island.getCreateTime().format(DateTimeFormatter.ofPattern(IridiumSkyblock.getInstance().getConfiguration().dateTimeFormat))));
-
-        IridiumSkyblock.getInstance().getBlockValues().blockValues.keySet().stream().map(material -> new Placeholder(material.name() + "_AMOUNT", String.valueOf(IridiumSkyblock.getInstance().getIslandManager().getIslandBlock(island, material).getAmount()))).forEach(placeholderList::add);
         return this;
     }
 

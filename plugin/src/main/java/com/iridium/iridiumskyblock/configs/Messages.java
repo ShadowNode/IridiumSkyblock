@@ -60,12 +60,10 @@ public class Messages {
     public String demotedPlayer = "%prefix% &7You have demoted %player% to %rank%.";
     public String userDemotedPlayer = "%prefix% &7%promoter% has demoted %player% to %rank%.";
     public String transferredOwnership = "%prefix% &7%oldowner% has transferred Island ownership to %newowner%.";
-    public String islandValue = "%prefix% &b&l * &7%rank%: &b%value%";
     public String cannotTransferYourself = "%prefix% &7You cannot transfer the island ownership to yourself.";
     public String cannotBreakBlocks = "%prefix% &7You cannot break blocks on this island.";
     public String cannotPlaceBlocks = "%prefix% &7You cannot place blocks on this island.";
     public String cannotUseBuckets = "%prefix% &7You cannot use buckets on this island.";
-    public String cannotMineSpawners = "%prefix% &7You cannot place blocks on this island.";
     public String cannotOpenDoors = "%prefix% &7You cannot open doors on this island.";
     public String cannotOpenContainers = "%prefix% &7You cannot open containers on this island.";
     public String cannotChangePermissions = "%prefix% &7You cannot change this permission.";
@@ -84,46 +82,22 @@ public class Messages {
     public String invalidSaveSchematicCommandSyntax = "%prefix% &7Please use /is saveSchematic <Name>.";
     public String invalidSchematicPositions = "%prefix% &7You haven't set valid schematic positions with /is position.";
     public String missingSchematicConfirmation = "%prefix% &7A schematic by that name already exists, to overwrite it use /is save <name> confirm.";
-    public String bankItemDoesntExist = "%prefix% &7That bank item doesn't exist.";
     public String islandBorderChanged = "%prefix% &7%player% has changed your island border to %color%.";
     public String notAColor = "%prefix% &7That is not a valid color.";
-    public String notANumber = "%prefix% &7That is not a valid number.";
-    public String gaveBank = "%prefix% &7You gave %player% %amount% %item%.";
-    public String invalidMissionType = "%prefix% &7That is not a valid mission type.";
     public String maxLevelReached = "%prefix% &7Maximum level reached.";
     public String cannotAfford = "%prefix% &7You cannot afford this.";
     public String unknownUpgrade = "%prefix% &7Unknown Island upgrade.";
-    public String unknownBooster = "%prefix% &7Unknown Island booster.";
-    public String unknownWarp = "%prefix% &7Unknown Island warp.";
     public String alreadyTrusted = "%prefix% &7This player is already trusted.";
     public String trustedPlayer = "%prefix% &7%truster% has trusted %player% to your island.";
     public String playerTrustedYou = "%prefix% &7%truster% has trusted you to their island.";
     public String trustRevoked = "%prefix% &7Island Trust for %player% has been revoked.";
     public String trustDoesntExist = "%prefix% &7%player% is not trusted in your island.";
-    public String createdWarp = "%prefix% &7Created warp %name%.";
-    public String warpAlreadyExists = "%prefix% &7A warp with that name already exists.";
-    public String warpIconSet = "%prefix% &7Warp icon set.";
-    public String warpDescriptionSet = "%prefix% &7Warp description set.";
-    public String materialDoesntExist = "%prefix% &7Material doesnt exist.";
-    public String warpLimitReached = "%prefix% &7The max warp limit has already been reached.";
-    public String incorrectPassword = "%prefix% &7Incorrect Password.";
     public String teleportingWarp = "%prefix% &7Teleporting to warp %name%.";
-    public String deletingWarp = "%prefix% &7Deleting warp %name%.";
-    public String notOnAnIsland = "%prefix% &7You are not on an island.";
-    public String flightBoosterNotActive = "%prefix% &7The flight booster is not currently active.";
-    public String flightEnabled = "%prefix% &7Island flight enabled.";
-    public String flightDisabled = "%prefix% &7Island flight disabled.";
-    public String bankWithdrew = "%prefix% &7You successfully withdrew %amount% %type% from your island bank.";
-    public String bankDeposited = "%prefix% &7You successfully deposited %amount% %type% from your island bank.";
-    public String cannotManageWarps = "%prefix% &7You cannot manage warps on this island.";
-    public String cannotWithdraw = "%prefix% &7You cannot withdraw from the island bank.";
     public String cannotManageTrusts = "%prefix% &7You cannot manage Island Trusts.";
     public String cannotManageBorder = "%prefix% &7You cannot change the Island Border.";
     public String teleportCanceled = "%prefix% &7Teleportation Canceled, Please stand still.";
     public String unknownSchematic = "%prefix% &7Unknown Schematic.";
-    public String onlySetWarpOnIsland = "%prefix% &7You can only create an Island Warp on your island.";
     public String onlySetHomeOnIsland = "%prefix% &7You can only set your Island Home on your island.";
-    public String islandLevel = "%prefix% &7Island Level %island_level% %island_experience%/%island_experienceRequired% Experience";
     public String dataReset = "%prefix% &7All data has been reset.";
     public String yes = "Yes";
     public String no = "No";
@@ -134,8 +108,6 @@ public class Messages {
             "<GRADIENT:09C6F9>Island Name</GRADIENT:045DE9>&r: &7%island_name%",
             "<GRADIENT:09C6F9>Island Owner</GRADIENT:045DE9>&r: &7%owner%",
             "<GRADIENT:09C6F9>Island Members</GRADIENT:045DE9>&r: &7%members%",
-            "<GRADIENT:09C6F9>Island Level</GRADIENT:045DE9>&r: &7%level%",
-            "<GRADIENT:09C6F9>Island Value</GRADIENT:045DE9>&r: &7%value%",
             "<GRADIENT:09C6F9>Island Visitable</GRADIENT:045DE9>&r: &7%visitable%"
     );
 

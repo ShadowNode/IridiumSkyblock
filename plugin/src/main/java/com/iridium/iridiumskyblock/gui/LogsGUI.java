@@ -74,10 +74,7 @@ public class LogsGUI implements GUI {
         setItemStack(inventory, logInventoryConfig.IslandMembers, membersPage, LogAction.USER_JOINED, LogAction.USER_KICKED, LogAction.USER_LEFT, LogAction.USER_DEMOTED, LogAction.USER_PROMOTED);
         setItemStack(inventory, logInventoryConfig.IslandInvites, invitesPage, LogAction.USER_INVITED, LogAction.USER_UNINVITED);
         setItemStack(inventory, logInventoryConfig.IslandTrusts, trustsPage, LogAction.USER_TRUSTED, LogAction.USER_UNTRUSTED);
-        setItemStack(inventory, logInventoryConfig.IslandBank, bankPage, LogAction.BANK_DEPOSIT, LogAction.BANK_WITHDRAW);
-        setItemStack(inventory, logInventoryConfig.IslandBoosters, boostersPage, LogAction.BOOSTER_PURCHASE);
         setItemStack(inventory, logInventoryConfig.IslandUpgrades, upgradesPage, LogAction.UPGRADE_PURCHASE);
-        setItemStack(inventory, logInventoryConfig.IslandRewards, rewardsPage, LogAction.REWARD_REDEEMED);
     }
 
     public void setItemStack(Inventory inventory, Item item, int page, LogAction... logActions) {
@@ -148,12 +145,6 @@ public class LogsGUI implements GUI {
                 return logInventoryConfig.USER_TRUSTED;
             case USER_UNTRUSTED:
                 return logInventoryConfig.USER_UNTRUSTED;
-            case BANK_DEPOSIT:
-                return logInventoryConfig.BANK_DEPOSIT;
-            case BANK_WITHDRAW:
-                return logInventoryConfig.BANK_WITHDRAW;
-            case BOOSTER_PURCHASE:
-                return logInventoryConfig.BOOSTER_PURCHASE;
             case UPGRADE_PURCHASE:
                 return logInventoryConfig.UPGRADE_PURCHASE;
             case REWARD_REDEEMED:
@@ -186,21 +177,9 @@ public class LogsGUI implements GUI {
             if (canChangePage(invitesPage, i, LogAction.USER_INVITED, LogAction.USER_UNINVITED)) {
                 invitesPage += i;
             }
-        } else if (event.getSlot() == logInventoryConfig.IslandBoosters.slot) {
-            if (canChangePage(boostersPage, i, LogAction.BOOSTER_PURCHASE)) {
-                boostersPage += i;
-            }
-        } else if (event.getSlot() == logInventoryConfig.IslandBank.slot) {
-            if (canChangePage(bankPage, i, LogAction.BANK_DEPOSIT, LogAction.BANK_WITHDRAW)) {
-                bankPage += i;
-            }
         } else if (event.getSlot() == logInventoryConfig.IslandUpgrades.slot) {
             if (canChangePage(upgradesPage, i, LogAction.UPGRADE_PURCHASE)) {
                 upgradesPage += i;
-            }
-        } else if (event.getSlot() == logInventoryConfig.IslandRewards.slot) {
-            if (canChangePage(rewardsPage, i, LogAction.REWARD_REDEEMED)) {
-                rewardsPage += i;
             }
         }
         addContent(event.getInventory());

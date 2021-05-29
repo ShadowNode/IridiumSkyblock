@@ -4,7 +4,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.iridium.iridiumskyblock.Color;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.IslandRank;
-import com.iridium.iridiumskyblock.configs.BlockValues;
 import com.iridium.iridiumskyblock.configs.Schematics;
 import com.iridium.iridiumskyblock.managers.IslandManager;
 import com.j256.ormlite.field.DatabaseField;
@@ -190,45 +189,6 @@ public final class Island {
     }
 
     /**
-     * Returns the Island's total value, based on the valuable blocks and spawners.
-     *
-     * @return The Island value
-     */
-    public double getValue() {
-        AtomicReference<Double> value = new AtomicReference<>((double) 0);
-
-        IridiumSkyblock.getInstance().getDatabaseManager().getIslandBlocksTableManager().getEntries(this).forEach(islandBlocks ->
-                value.updateAndGet(v -> v + getValueOf(islandBlocks.getMaterial()) * islandBlocks.getAmount())
-        );
-
-        IridiumSkyblock.getInstance().getDatabaseManager().getIslandSpawnersTableManager().getEntries(this).forEach(islandSpawners ->
-                value.updateAndGet(v -> v + getValueOf(islandSpawners.getSpawnerType()) * islandSpawners.getAmount())
-        );
-
-        return value.get();
-    }
-
-    /**
-     * Returns the value of the provided material on this Island.
-     *
-     * @param material The material
-     * @return The value of this block on the island, 0 if it isn't valuable
-     */
-    public double getValueOf(XMaterial material) {
-        return IridiumSkyblock.getInstance().getBlockValues().blockValues.getOrDefault(material, new BlockValues.ValuableBlock(0, "", 0)).value;
-    }
-
-    /**
-     * Returns the value of the provided material on this Island.
-     *
-     * @param spawnerType The spawnerType
-     * @return The value of this block on the island, 0 if it isn't valuable
-     */
-    public double getValueOf(EntityType spawnerType) {
-        return IridiumSkyblock.getInstance().getBlockValues().spawnerValues.getOrDefault(spawnerType, new BlockValues.ValuableBlock(0, "", 0)).value;
-    }
-
-    /**
      * Gets the Islands current size.
      * Must be lower than the distance between Islands.
      */
@@ -301,15 +261,6 @@ public final class Island {
     public Location getPos2(World world) {
         double size = getSize() / 2.00;
         return getCenter(world).add(new Location(world, size, 0, size));
-    }
-
-    /**
-     * Returns the rank of this Island in comparison to the other Islands.
-     *
-     * @return The islands rank
-     */
-    public int getRank() {
-        return IridiumSkyblock.getInstance().getIslandManager().getIslands(IslandManager.SortType.VALUE).indexOf(this) + 1;
     }
 
     /**

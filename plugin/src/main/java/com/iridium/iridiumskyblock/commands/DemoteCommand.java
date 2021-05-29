@@ -54,6 +54,10 @@ public class DemoteCommand extends Command {
             if (island.get().equals(offlinePlayerUser.getIsland().orElse(null))) {
                 IslandRank nextRank = IslandRank.getByLevel(offlinePlayerUser.getIslandRank().getLevel() - 1);
                 if (nextRank != null && offlinePlayerUser.getIslandRank().getLevel() < user.getIslandRank().getLevel() && IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), IridiumSkyblock.getInstance().getUserManager().getUser(player), IridiumSkyblock.getInstance().getPermissions().demote, "demote")) {
+                    //Never set anyone's rank to trusted we just use the table permission system for trusted members
+                    if (nextRank.equals(IslandRank.TRUSTED)) {
+                        nextRank = IslandRank.VISITOR;
+                    }
                     if (nextRank.equals(IslandRank.VISITOR)) {
                         String command = IridiumSkyblock.getInstance().getCommands().kickCommand.aliases.get(0);
                         Bukkit.getServer().dispatchCommand(player, "is " + command + " " + args[1]);
@@ -61,7 +65,7 @@ public class DemoteCommand extends Command {
                         UserDemoteEvent userDemoteEvent = new UserDemoteEvent(island.get(), user, nextRank);
                         Bukkit.getPluginManager().callEvent(userDemoteEvent);
                         if (userDemoteEvent.isCancelled()) return;
-                        
+
                         offlinePlayerUser.setIslandRank(nextRank);
                         for (User member : island.get().getMembers()) {
                             Player p = Bukkit.getPlayer(member.getUuid());

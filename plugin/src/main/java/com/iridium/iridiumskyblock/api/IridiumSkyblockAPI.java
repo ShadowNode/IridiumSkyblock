@@ -4,7 +4,6 @@ import com.iridium.iridiumskyblock.Booster;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.Permission;
 import com.iridium.iridiumskyblock.Upgrade;
-import com.iridium.iridiumskyblock.bank.BankItem;
 import com.iridium.iridiumskyblock.commands.Command;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.IslandBooster;
@@ -59,35 +58,6 @@ public class IridiumSkyblockAPI {
         if (instance == null) {
             instance = new IridiumSkyblockAPI(iridiumSkyblock);
         }
-    }
-
-    /**
-     * Adds an Island BankItem
-     *
-     * @param bankItem The specified Bankitem
-     */
-    public void addBankItem(@NotNull BankItem bankItem) {
-        iridiumSkyblock.getBankItemList().add(bankItem);
-    }
-
-    /**
-     * Adds an Island Upgrade
-     *
-     * @param upgradeName The name of the Upgrade (Used for storage purposes)
-     * @param upgrade     the upgrade item
-     */
-    public void addUpgrade(@NotNull String upgradeName, @NotNull Upgrade upgrade) {
-        iridiumSkyblock.getUpgradesList().put(upgradeName, upgrade);
-    }
-
-    /**
-     * Adds an Island Booster
-     *
-     * @param boosterName The name of the booster (Used for storage purposes)
-     * @param booster     The booster Item
-     */
-    public void addBooster(@NotNull String boosterName, @NotNull Booster booster) {
-        iridiumSkyblock.getBoosterList().put(boosterName, booster);
     }
 
     /**
@@ -184,17 +154,6 @@ public class IridiumSkyblockAPI {
     }
 
     /**
-     * Gets time remaining on an island booster
-     *
-     * @param island  The specified Island
-     * @param booster The name of the Booster
-     * @return The time remaining
-     */
-    public IslandBooster getIslandBooster(@NotNull Island island, @NotNull String booster) {
-        return iridiumSkyblock.getIslandManager().getIslandBooster(island, booster);
-    }
-
-    /**
      * Gets all entities on an island
      *
      * @param island The specified Island
@@ -205,16 +164,6 @@ public class IridiumSkyblockAPI {
     }
 
     /**
-     * Gets a list of islands sorted by SortType
-     *
-     * @param sortType How we are sorting the islands
-     * @return The sorted list of islands
-     */
-    public List<Island> getIslands(IslandManager.SortType sortType) {
-        return iridiumSkyblock.getIslandManager().getIslands(sortType);
-    }
-
-    /**
      * Returns the overworld.
      *
      * @return The main skyblock {@link World}, might be null if some third-party plugin deleted it
@@ -222,26 +171,6 @@ public class IridiumSkyblockAPI {
      */
     public World getWorld() {
         return iridiumSkyblock.getIslandManager().getWorld();
-    }
-
-    /**
-     * Returns the NetherWorld
-     *
-     * @return The nether skyblock {@link World}, might be null if some third-party plugin deleted it
-     * @since 3.0.0
-     */
-    public World getNetherWorld() {
-        return iridiumSkyblock.getIslandManager().getNetherWorld();
-    }
-
-    /**
-     * Returns the NetherWorld
-     *
-     * @return The nether skyblock {@link World}, might be null if some third-party plugin deleted it
-     * @since 3.0.0
-     */
-    public World getEndWorld() {
-        return iridiumSkyblock.getIslandManager().getEndWorld();
     }
 
 }

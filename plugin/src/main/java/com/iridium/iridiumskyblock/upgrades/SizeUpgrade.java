@@ -11,8 +11,8 @@ import java.util.List;
 public class SizeUpgrade extends UpgradeData {
     public int size;
 
-    public SizeUpgrade(int money, int crystals, int size) {
-        super(money, crystals);
+    public SizeUpgrade(int money, int size) {
+        super(money);
         this.size = size;
     }
 

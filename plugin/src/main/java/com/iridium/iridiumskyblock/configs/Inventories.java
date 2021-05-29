@@ -36,18 +36,14 @@ public class Inventories {
     );
 
     public InventoryConfig islandMenu = new InventoryConfig(45, "&7Island Menu", background1, ImmutableMap.<String, Item>builder()
-            .put("is regen", new Item(XMaterial.GRASS_BLOCK, 12, 1, "&b&lIsland Regen", Collections.singletonList("&7Regenerate your island")))
-            .put("is boosters", new Item(XMaterial.EXPERIENCE_BOTTLE, 23, 1, "&b&lIsland Boosters", Collections.singletonList("&7View your island boosters")))
-            .put("is home", new Item(XMaterial.WHITE_BED, 13, 1, "&b&lIsland Home", Collections.singletonList("&7Teleport to your island home")))
-            .put("is members", new Item(XMaterial.PLAYER_HEAD, 14, 1, "&b&lIsland Members", "Peaches_MLG", Collections.singletonList("&7View your island members")))
-            .put("is warps", new Item(XMaterial.END_PORTAL_FRAME, 20, 1, "&b&lIsland Warps", Collections.singletonList("&7View your island warps")))
-            .put("is upgrade", new Item(XMaterial.DIAMOND, 21, 1, "&b&lIsland Upgrades", Collections.singletonList("&7View your island upgrades")))
-            .put("is missions", new Item(XMaterial.IRON_SWORD, 22, 1, "&b&lIsland Missions", Collections.singletonList("&7View your island missions")))
-            .put("is border", new Item(XMaterial.BEACON, 24, 1, "&b&lIsland Border", Collections.singletonList("&7Change your island border")))
-            .put("is bank", new Item(XMaterial.PLAYER_HEAD, 30, "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODM4MWM1MjlkNTJlMDNjZDc0YzNiZjM4YmI2YmEzZmRlMTMzN2FlOWJmNTAzMzJmYWE4ODllMGEyOGU4MDgxZiJ9fX0", 1, "&b&lIsland Bank", Collections.singletonList("&7View your island bank")))
-            .put("is permissions", new Item(XMaterial.WRITABLE_BOOK, 31, 1, "&b&lIsland Permissions", Collections.singletonList("&7View your island permissions")))
-            .put("is trusted", new Item(XMaterial.NAME_TAG, 32, 1, "&b&lTrusted Members", Collections.singletonList("&7View your island's trusted members")))
-            .put("is delete", new Item(XMaterial.BARRIER, 44, 1, "&b&lDelete Island", Collections.singletonList("&7Delete your island")))
+            .put("is delete", new Item(XMaterial.BARRIER, 0, 1, "&b&lDelete Island", Arrays.asList("&7Deletes your island, inventory and quests.           ","<GRADIENT:870000>&lThis is irreversible! Use at your own risk.</GRADIENT:bfe9ff>")))
+            .put("is regen", new Item(XMaterial.GRASS_BLOCK, 36, 1, "&b&lIsland Reset", Arrays.asList("&7Reset your island, inventory and quests.           ","<GRADIENT:870000>&lThis is irreversible! Use at your own risk.</GRADIENT:bfe9ff>")))
+            .put("is home", new Item(XMaterial.WHITE_BED, 22, 1, "&b&lIsland Home", Collections.singletonList("&7Teleport to your island home")))
+            .put("is members", new Item(XMaterial.PLAYER_HEAD, 8, 1, "&b&lIsland Members", "Peaches_MLG", Collections.singletonList("&7View your island members")))
+            .put("is upgrade", new Item(XMaterial.DIAMOND, 4, 1, "&b&lIsland Upgrades", Collections.singletonList("&7View your island upgrades")))
+            .put("is border", new Item(XMaterial.BEACON, 44, 1, "&b&lIsland Border", Collections.singletonList("&7Change your island border")))
+            .put("is permissions", new Item(XMaterial.WRITABLE_BOOK, 17, 1, "&b&lIsland Permissions", Collections.singletonList("&7View your island permissions")))
+            .put("is trusted", new Item(XMaterial.NAME_TAG, 7, 1, "&b&lTrusted Members", Collections.singletonList("&7View your island's trusted members")))
             .build()
     );
 
@@ -108,10 +104,7 @@ public class Inventories {
             new Item(XMaterial.PLAYER_HEAD, 10, 1, "&b&lIsland Members", "%island_owner%", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
             new Item(XMaterial.EMERALD, 11, 1, "&b&lIsland Trusts", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
             new Item(XMaterial.LAPIS_LAZULI, 12, 1, "&b&lIsland Invites", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
-            new Item(XMaterial.GOLD_INGOT, 13, 1, "&b&lIsland Bank", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
-            new Item(XMaterial.EXPERIENCE_BOTTLE, 14, 1, "&b&lIsland Boosters", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
             new Item(XMaterial.BEACON, 15, 1, "&b&lIsland Upgrades", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
-            new Item(XMaterial.DIAMOND, 16, 1, "&b&lIsland Rewards", Arrays.asList("", "&7Page %current_page%/%max_page%", "&b&l[!] &bLeft click to view Previous Page", "&b&l[!] &bRight click to view Next Page")),
             "&b%user% Joined (%days% days %hours% hours %minutes% minutes %seconds% seconds ago)",
             "&b%user% kicked %target% (%days% days %hours% hours %minutes% minutes %seconds% seconds ago)",
             "&b%user% Left (%days% days %hours% hours %minutes% minutes %seconds% seconds ago)",
@@ -140,8 +133,6 @@ public class Inventories {
                     "&b&l[!] &bLeft Click to Teleport",
                     "&b&l[!] &bRight Click to Delete"
             )));
-
-    public BlockValuesInventoryConfig blockValue = new BlockValuesInventoryConfig(27, "&7Block Values", background1, Collections.singletonList("&bValue per block: &7%value%"));
 
     public SingleItemGUI islandInvitesGUI = new SingleItemGUI(27, "&7Island Invites", background1, new Item(XMaterial.PLAYER_HEAD, 0, 1, "&b&l%player_name%", "%player_name%", Arrays.asList(
             "&7Invited By: %inviter%",

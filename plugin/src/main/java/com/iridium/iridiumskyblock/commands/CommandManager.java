@@ -60,30 +60,15 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         registerCommand(commands.permissionsCommand);
         registerCommand(commands.bypassCommand);
         registerCommand(commands.helpCommand);
-        registerCommand(commands.valueCommand);
-        registerCommand(commands.topCommand);
-        registerCommand(commands.bankCommand);
-        registerCommand(commands.withdrawCommand);
-        registerCommand(commands.depositCommand);
         registerCommand(commands.positionCommand);
         registerCommand(commands.saveSchematicCommand);
         registerCommand(commands.infoCommand);
-        registerCommand(commands.missionCommand);
-        registerCommand(commands.blockValueCommand);
         registerCommand(commands.borderCommand);
-        registerCommand(commands.rewardsCommand);
-        registerCommand(commands.upgradesCommand);
         registerCommand(commands.trustCommand);
         registerCommand(commands.unTrustCommand);
-        registerCommand(commands.boostersCommand);
-        registerCommand(commands.warpsCommand);
-        registerCommand(commands.setWarpCommand);
-        registerCommand(commands.editWarpCommand);
-        registerCommand(commands.deleteWarpCommand);
-        registerCommand(commands.flyCommand);
-        registerCommand(commands.levelCommand);
         registerCommand(commands.logsCommand);
         registerCommand(commands.clearDataCommand);
+        registerCommand(commands.upgradesCommand);
     }
 
     /**
