@@ -31,9 +31,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.HashMap;
 import java.util.logging.Level;
-import java.util.stream.Collectors;
 
 /**
  * The main class of this plugin which handles initialization
@@ -197,30 +196,6 @@ public class IridiumSkyblock extends JavaPlugin {
     }
 
     /**
-     * Automatically resets the Island missions in a defined time intervall.
-     */
-    private void resetIslandMissions() {
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DAY_OF_MONTH, 1);
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
-
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                databaseManager.getIslandMissionTableManager().delete(
-                        databaseManager.getIslandMissionTableManager().getEntries().stream().filter(islandMission ->
-                                islandMission.getType() == Mission.MissionType.DAILY).collect(Collectors.toList()
-                        )
-                );
-                Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> resetIslandMissions());
-            }
-        }, c.getTime());
-    }
-
-    /**
      * Sets the {@link ChunkGenerator} for the Skyblock worlds.
      */
     @Nullable
@@ -261,6 +236,7 @@ public class IridiumSkyblock extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockPistonListener(), this);
         Bukkit.getPluginManager().registerEvents(new EntityExplodeListener(), this);
         Bukkit.getPluginManager().registerEvents(new BlockExplodeListener(), this);
+        //Bukkit.getPluginManager().registerEvents(new PlayerPortalListener(), this);
     }
 
     /**
@@ -366,6 +342,7 @@ public class IridiumSkyblock extends JavaPlugin {
         this.permissionList.put("interactEntities", permissions.interactEntities);
         this.permissionList.put("trust", permissions.trust);
         this.permissionList.put("border", permissions.border);
+        this.permissionList.put("portal", permissions.spawnPortal);
 
         this.upgradesList = new HashMap<>();
         if (upgrades.sizeUpgrade.enabled) upgradesList.put("size", upgrades.sizeUpgrade);

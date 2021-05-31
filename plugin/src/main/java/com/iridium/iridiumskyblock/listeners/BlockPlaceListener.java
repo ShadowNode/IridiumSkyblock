@@ -7,7 +7,6 @@ import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
@@ -33,29 +32,5 @@ public class BlockPlaceListener implements Listener {
             event.setCancelled(true);
             player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotPlaceBlocks.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
         }
-
-        /*
-        XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
-        IslandBlocks islandBlocks = IridiumSkyblock.getInstance().getIslandManager().getIslandBlock(island.get(), material);
-        islandBlocks.setAmount(islandBlocks.getAmount() + 1);
-
-        if (event.getBlock().getState() instanceof CreatureSpawner) {
-            CreatureSpawner creatureSpawner = (CreatureSpawner) event.getBlock().getState();
-            IslandSpawners islandSpawners = IridiumSkyblock.getInstance().getIslandManager().getIslandSpawners(island.get(), creatureSpawner.getSpawnedType());
-            islandSpawners.setAmount(islandSpawners.getAmount() + 1);
-        }
-        */
     }
-
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
-    public void monitorBlockPlace(BlockPlaceEvent event) {
-        /*
-        Player player = event.getPlayer();
-        User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
-        Optional<Island> island = user.getIsland();
-        XMaterial material = XMaterial.matchXMaterial(event.getBlock().getType());
-        island.ifPresent(value -> IridiumSkyblock.getInstance().getIslandManager().incrementMission(value, "PLACE:" + material.name(), 1));
-        */
-    }
-
 }

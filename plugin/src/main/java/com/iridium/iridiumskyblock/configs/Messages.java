@@ -66,12 +66,15 @@ public class Messages {
     public String cannotUseBuckets = "%prefix% &7You cannot use buckets on this island.";
     public String cannotOpenDoors = "%prefix% &7You cannot open doors on this island.";
     public String cannotOpenContainers = "%prefix% &7You cannot open containers on this island.";
+    public String cannotInteract = "%prefix% &7You cannot interact on this island.";
     public String cannotChangePermissions = "%prefix% &7You cannot change this permission.";
     public String cannotUseRedstone = "%prefix% &7You cannot use redstone on this island.";
+    public String cannotUseSpawnPortal = "%prefix% &7You cannot spawn a portal on this island.";
     public String cannotHurtMobs = "%prefix% &7You cannot hurt mobs on this island.";
     public String cannotInviteMember = "%prefix% &7You cannot invite members to this island.";
     public String cannotRegenIsland = "%prefix% &7You cannot regenerate your island.";
     public String cannotInteractEntities = "%prefix% &7You cannot interact with entities on this island.";
+    public String cannotCreatePortal = "%prefix% &7You cannot create this portal they are blocks in the way, clear a 4x1x5 area to the right where you are looking from.";
     public String cannotDropItems = "%prefix% &7You cannot drop items on this island.";
     public String cannotTransferOwnership = "%prefix% &7Only the Island owner can transfer ownership.";
     public String nowBypassing = "%prefix% &7You are now bypassing island restrictions.";
@@ -110,5 +113,4 @@ public class Messages {
             "<GRADIENT:09C6F9>Island Members</GRADIENT:045DE9>&r: &7%members%",
             "<GRADIENT:09C6F9>Island Visitable</GRADIENT:045DE9>&r: &7%visitable%"
     );
-
 }

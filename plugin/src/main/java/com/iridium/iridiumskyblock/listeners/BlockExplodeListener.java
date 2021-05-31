@@ -13,6 +13,4 @@ public class BlockExplodeListener implements Listener {
                 event.blockList().removeIf(block -> !island.isInIsland(block.getLocation()))
         );
     }
-
-
 }

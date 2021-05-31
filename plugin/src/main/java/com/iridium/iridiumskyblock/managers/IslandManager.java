@@ -16,8 +16,6 @@ import com.iridium.iridiumskyblock.utils.StringUtils;
 import io.papermc.lib.PaperLib;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.CreatureSpawner;
 import org.bukkit.block.TileState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -562,25 +560,4 @@ public class IslandManager {
     public World getWorld() {
         return Bukkit.getWorld(IridiumSkyblock.getInstance().getConfiguration().worldName);
     }
-
-    /**
-     * Returns the NetherWorld
-     *
-     * @return The nether skyblock {@link World}, might be null if some third-party plugin deleted it
-     * @since 3.0.0
-     */
-    public World getNetherWorld() {
-        return Bukkit.getWorld(IridiumSkyblock.getInstance().getConfiguration().worldName + "_nether");
-    }
-
-    /**
-     * Returns the NetherWorld
-     *
-     * @return The nether skyblock {@link World}, might be null if some third-party plugin deleted it
-     * @since 3.0.0
-     */
-    public World getEndWorld() {
-        return Bukkit.getWorld(IridiumSkyblock.getInstance().getConfiguration().worldName + "_the_end");
-    }
-
 }
