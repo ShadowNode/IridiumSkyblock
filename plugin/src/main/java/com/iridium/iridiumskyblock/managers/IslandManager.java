@@ -67,7 +67,33 @@ public class IslandManager {
      * @param delay  How long the player should stand still for before teleporting
      */
     public void teleportHome(@NotNull Player player, @NotNull Island island, int delay) {
-        player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().teleportingHome.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+        player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().teleportingHome
+                .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+        teleport(player, island, delay);
+    }
+
+    /**
+     * Teleports a player to another Island's home
+     *
+     * @param player The player we are teleporting
+     * @param island The island we are teleporting them to
+     * @param delay  How long the player should stand still for before teleporting
+     */
+    public void teleportOtherHome(@NotNull Player player, @NotNull Island island, int delay) {
+        player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().teleportingOtherHome
+                .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)
+                .replace("%player%", island.getOwner().getName())));
+        teleport(player, island, delay);
+    }
+
+    /**
+     * Teleports a player to an Island's home
+     *
+     * @param player The player we are teleporting
+     * @param island The island we are teleporting them to
+     * @param delay  How long the player should stand still for before teleporting
+     */
+    private void teleport(@NotNull Player player, @NotNull Island island, int delay) {
         if (delay < 1) {
             teleportHome(player, island);
             return;

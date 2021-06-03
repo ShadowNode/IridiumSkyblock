@@ -28,11 +28,12 @@ public class PlayerTeleportListener implements Listener {
                 Optional<Island> optionalIsland = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getTo());
                 optionalIsland.ifPresent(island -> PlayerUtils.sendBorder(player, island));
             } else {
-                if (isOutsideOfBorder(player, player.getWorld().getWorldBorder())) {
+                if (isOutsideOfBorder(player, event.getTo().getWorld().getWorldBorder())) {
                     User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
                     Optional<Island> island = user.getIsland();
                     Location spawn = island.map(Island::getHome).orElseGet(() -> Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
                     PaperLib.teleportAsync(player, LocationUtils.getSafeLocation(spawn, island.orElse(null)));
+                    Bukkit.getScheduler().runTaskLater(IridiumSkyblock.getInstance(), () -> island.ifPresent(islandPlayer -> PlayerUtils.sendBorder(player, islandPlayer)),1);
                     event.setCancelled(true);
                 }
                 Bukkit.getScheduler().runTask(IridiumSkyblock.getInstance(), () -> IridiumSkyblock.getInstance().getNms().sendWorldBorder(player, Color.BLUE, event.getTo().getWorld().getWorldBorder().getSize(), event.getTo().getWorld().getWorldBorder().getCenter()));
