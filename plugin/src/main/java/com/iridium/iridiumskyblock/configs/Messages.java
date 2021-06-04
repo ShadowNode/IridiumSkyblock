@@ -71,6 +71,7 @@ public class Messages {
     public String cannotChangePermissions = "%prefix% &7You cannot change this permission.";
     public String cannotUseRedstone = "%prefix% &7You cannot use redstone on this island.";
     public String cannotUseSpawnPortal = "%prefix% &7You cannot spawn a portal on this island.";
+    public String cannotSpawnPortal = "%prefix% &7You cannot afford to spawn a portal on this island. You need 17 obsidian in your inventory.";
     public String cannotHurtMobs = "%prefix% &7You cannot hurt mobs on this island.";
     public String cannotInviteMember = "%prefix% &7You cannot invite members to this island.";
     public String cannotRegenIsland = "%prefix% &7You cannot regenerate your island.";

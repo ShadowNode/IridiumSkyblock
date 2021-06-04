@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Optional;
 
@@ -54,11 +55,17 @@ public class PlayerInteractListener implements Listener {
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotUseRedstone.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
             } else if (event.getClickedBlock().getType().equals(Material.OBSIDIAN) && event.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
-                if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().spawnPortal, "portal")) {
-                    event.setCancelled(true);
+                if (!event.getPlayer().getWorld().equals(IridiumSkyblock.getInstance().getIslandManager().getWorld()) || !IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().spawnPortal, "portal")) {
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotUseSpawnPortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+                    event.setCancelled(true);
                 }
-                spawnPortal(event.getClickedBlock().getLocation(), 4,5, player.getFacing(), player);
+                if (event.getPlayer().getInventory().containsAtLeast(new ItemStack(Material.OBSIDIAN),17)) {
+                    event.getPlayer().getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 17));
+                    spawnPortal(event.getClickedBlock().getLocation(), 4, 5, player.getFacing(), player);
+                } else {
+                    player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotSpawnPortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+                    event.setCancelled(true);
+                }
             } else {
                 if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().openContainers, "openContainers")) {
                     event.setCancelled(true);
@@ -109,7 +116,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     //obsidian walls
                     if(l == 0 || h == 0 || l == length || h == height) {
-                        world.getBlockAt(rootX+l, rootY+h, rootZ).setType(Material.BLACK_CONCRETE, false);
+                        world.getBlockAt(rootX+l, rootY+h, rootZ).setType(Material.OBSIDIAN, false);
                     }
                     //portal block
                     else {
@@ -133,7 +140,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     //obsidian walls
                     if(l == 0 || h == 0 || l == length || h == height) {
-                        world.getBlockAt(rootX, rootY+h, rootZ+l).setType(Material.BLACK_CONCRETE, false);
+                        world.getBlockAt(rootX, rootY+h, rootZ+l).setType(Material.OBSIDIAN, false);
                     }
                     //portal block
                     else {
@@ -161,7 +168,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     //obsidian walls
                     if(l == 0 || h == 0 || l == length || h == height) {
-                        world.getBlockAt(rootX-l, rootY+h, rootZ).setType(Material.BLACK_CONCRETE, false);
+                        world.getBlockAt(rootX-l, rootY+h, rootZ).setType(Material.OBSIDIAN, false);
                     }
                     //portal block
                     else {
@@ -184,7 +191,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     //obsidian walls
                     if(l == 0 || h == 0 || l == length || h == height) {
-                        world.getBlockAt(rootX, rootY+h, rootZ-l).setType(Material.BLACK_CONCRETE, false);
+                        world.getBlockAt(rootX, rootY+h, rootZ-l).setType(Material.OBSIDIAN, false);
                     }
                     //portal block
                     else {
