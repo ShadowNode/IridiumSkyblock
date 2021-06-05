@@ -60,8 +60,9 @@ public class PlayerInteractListener implements Listener {
                     event.setCancelled(true);
                 }
                 if (event.getPlayer().getInventory().containsAtLeast(new ItemStack(Material.OBSIDIAN),17)) {
-                    event.getPlayer().getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 17));
-                    spawnPortal(event.getClickedBlock().getLocation(), 4, 5, player.getFacing(), player);
+                    if (spawnPortal(event.getClickedBlock().getLocation(), 4, 5, player.getFacing(), player)) {
+                        player.getInventory().removeItem(new ItemStack(Material.OBSIDIAN, 17));
+                    }
                 } else {
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotSpawnPortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                     event.setCancelled(true);
@@ -93,10 +94,10 @@ public class PlayerInteractListener implements Listener {
         player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotInteractEntities.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
     }
 
-    public static void spawnPortal(Location loc, int length, int height, BlockFace direction, Player player) {
+    public static boolean spawnPortal(Location loc, int length, int height, BlockFace direction, Player player) {
         World world = loc.getWorld();
         if (world == null) {
-            return;
+            return false;
         }
         int rootX = loc.getBlockX();
         int rootY = loc.getBlockY();
@@ -107,11 +108,10 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     if (world.getBlockAt(rootX+l, rootY+h, rootZ).getType() != Material.AIR && !world.getBlockAt(rootX+l, rootY+h, rootZ).equals(loc.getBlock())) {
                         player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotCreatePortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
-                        return;
+                        return false;
                     }
                 }
             }
-
             for(int l=0; l<=length; l++) {
                 for(int h=0; h<=height; h++) {
                     //obsidian walls
@@ -124,7 +124,6 @@ public class PlayerInteractListener implements Listener {
                     }
                 }
             }
-            loc.add(length / 2d, 1, 0);
         }
         //increment Z and Y
         else if(direction == BlockFace.EAST) {
@@ -132,7 +131,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     if (world.getBlockAt(rootX, rootY+h, rootZ+l).getType() != Material.AIR && !world.getBlockAt(rootX, rootY+h, rootZ+l).equals(loc.getBlock())) {
                         player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotCreatePortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
-                        return;
+                        return false;
                     }
                 }
             }
@@ -160,7 +159,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     if (world.getBlockAt(rootX-l, rootY+h, rootZ).getType() != Material.AIR && !world.getBlockAt(rootX-l, rootY+h, rootZ).equals(loc.getBlock())) {
                         player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotCreatePortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
-                        return;
+                        return false;
                     }
                 }
             }
@@ -183,7 +182,7 @@ public class PlayerInteractListener implements Listener {
                 for(int h=0; h<=height; h++) {
                     if (world.getBlockAt(rootX, rootY+h, rootZ-l).getType() != Material.AIR && !world.getBlockAt(rootX, rootY+h, rootZ-l).equals(loc.getBlock())) {
                         player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotCreatePortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
-                        return;
+                        return false;
                     }
                 }
             }
@@ -205,5 +204,6 @@ public class PlayerInteractListener implements Listener {
                 }
             }
         }
+        return true;
     }
 }
