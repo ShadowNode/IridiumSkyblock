@@ -26,6 +26,12 @@ public class BucketListener implements Listener {
     }
 
     public void onBucketEvent(PlayerBucketEvent event) {
+        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
+            System.out.print("BucketUse - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
+            return;
+        }
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
         Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getBlockClicked().getLocation());

@@ -15,6 +15,12 @@ public class PlayerMoveListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
+        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
+            System.out.print("PlayerMove - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
+            return;
+        }
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
         if (event.getTo().getBlockX() != event.getFrom().getBlockX() || event.getTo().getBlockZ() != event.getFrom().getBlockZ()) {
@@ -25,26 +31,6 @@ public class PlayerMoveListener implements Listener {
                         .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix))
                 );
             }
-            /*
-            if (user.isFlying()) {
-                Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
-                if (island.isPresent()) {
-                    IslandBooster islandBooster = IridiumSkyblock.getInstance().getIslandManager().getIslandBooster(island.get(), "flight");
-                    if (!islandBooster.isActive() && !player.hasPermission("iridiumskyblock.fly")) {
-                        user.setFlying(false);
-                        if (player.getGameMode().equals(GameMode.SURVIVAL) || player.getGameMode().equals(GameMode.ADVENTURE)) {
-                            player.setFlying(false);
-                            player.setAllowFlight(false);
-                            player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().flightDisabled
-                                    .replace("%player%", player.getName())
-                                    .replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix))
-                            );
-                        }
-                    }
-                }
-            }
-
-             */
         }
         if (event.getTo().getY() < 0 & IridiumSkyblock.getInstance().getConfiguration().voidTeleport) {
             Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());

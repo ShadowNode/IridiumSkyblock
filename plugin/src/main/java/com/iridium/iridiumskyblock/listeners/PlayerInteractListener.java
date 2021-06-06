@@ -24,6 +24,12 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
+            System.out.print("PlayerInteract - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
+            return;
+        }
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
 

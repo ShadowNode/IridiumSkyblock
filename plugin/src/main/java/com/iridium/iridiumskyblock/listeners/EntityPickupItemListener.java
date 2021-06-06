@@ -14,10 +14,15 @@ public class EntityPickupItemListener implements Listener {
 
     @EventHandler
     public void onEntityPickupItem(EntityPickupItemEvent event) {
+        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
+            System.out.print("EntityPickup - " + event.getEntity().getUniqueId() + "-" + event.getEntity().getName() + "\n");
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getEntity().getUniqueId())) {
+            return;
+        }
         if (event.getEntityType() != EntityType.PLAYER) {
             return;
         }
-
         Player player = (Player) event.getEntity();
         Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getItem().getLocation());
         if (!island.isPresent()) return;
