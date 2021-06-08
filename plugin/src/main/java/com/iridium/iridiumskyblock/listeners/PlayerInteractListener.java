@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class PlayerInteractListener implements Listener {
@@ -30,9 +31,9 @@ public class PlayerInteractListener implements Listener {
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
             return;
         }
+
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
-
         if (event.getClickedBlock() != null) {
             Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getClickedBlock().getLocation());
 
@@ -42,6 +43,10 @@ public class PlayerInteractListener implements Listener {
             }
 
             if (!island.isPresent()) {
+                World world = event.getClickedBlock().getLocation().getWorld();
+                if (Objects.equals(world, IridiumSkyblock.getInstance().getIslandManager().getWorld()) && !user.isBypass()) {
+                    event.setCancelled(true);
+                }
                 return;
             }
 
@@ -77,6 +82,17 @@ public class PlayerInteractListener implements Listener {
                 if (!IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().openContainers, "openContainers")) {
                     event.setCancelled(true);
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotInteract.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
+                }
+            }
+        } else {
+            // This is not ideal but it will stop them placing around 4-5 blocks outside world border
+            // dang you quark and the side placing of blocks and not following event handlers :p
+            // if someone got a betterway to detect wat they are looking at and see if its in an island or not
+            Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getPlayer().getLocation());
+            if (!island.isPresent()) {
+                World world = event.getPlayer().getLocation().getWorld();
+                if (Objects.equals(world, IridiumSkyblock.getInstance().getIslandManager().getWorld())) {
+                    event.setCancelled(true);
                 }
             }
         }
