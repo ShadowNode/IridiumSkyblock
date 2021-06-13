@@ -79,8 +79,11 @@ public class Messages {
     public String cannotCreatePortal = "%prefix% &7You cannot create this portal they are blocks in the way, clear a 4x1x5 area to the right where you are looking from.";
     public String cannotDropItems = "%prefix% &7You cannot drop items on this island.";
     public String cannotTransferOwnership = "%prefix% &7Only the Island owner can transfer ownership.";
+    public String cannotManageBiome = "%prefix% &7You cannot change the biomes on this island.";
     public String nowBypassing = "%prefix% &7You are now bypassing island restrictions.";
     public String noLongerBypassing = "%prefix% &7You are no longer bypassing island restrictions.";
+    public String notABiome = "%prefix% &7This biome cannot be found.";
+    public String biomeChanged = "%prefix% &7Biome changed to %biome% please go to spawn and come back to update the biome on your client.";
     public String setSchematicPosition = "%prefix% &7The position has been set.";
     public String addedSchematic = "%prefix% &7Schematic has been added.";
     public String invalidPositionCommandSyntax = "%prefix% &7Please use /is position <1/2>.";

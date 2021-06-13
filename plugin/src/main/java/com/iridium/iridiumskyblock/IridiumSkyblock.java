@@ -343,6 +343,7 @@ public class IridiumSkyblock extends JavaPlugin {
         this.permissionList.put("trust", permissions.trust);
         this.permissionList.put("border", permissions.border);
         this.permissionList.put("portal", permissions.spawnPortal);
+        this.permissionList.put("biomes", permissions.changeBiomes);
 
         this.upgradesList = new HashMap<>();
         if (upgrades.sizeUpgrade.enabled) upgradesList.put("size", upgrades.sizeUpgrade);

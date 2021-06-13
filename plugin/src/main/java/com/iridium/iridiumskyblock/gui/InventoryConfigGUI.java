@@ -6,6 +6,7 @@ import com.iridium.iridiumskyblock.utils.ItemStackUtils;
 import com.iridium.iridiumskyblock.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,10 +38,12 @@ public class InventoryConfigGUI implements GUI {
 
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
-        for (String command : inventoryConfig.items.keySet()) {
-            if (inventoryConfig.items.get(command).slot == event.getSlot()) {
-                event.getWhoClicked().closeInventory();
-                Bukkit.getServer().dispatchCommand(event.getWhoClicked(), command);
+        if (event.getClickedInventory() != null && event.getClickedInventory().getType() != InventoryType.PLAYER) {
+            for (String command : inventoryConfig.items.keySet()) {
+                if (inventoryConfig.items.get(command).slot == event.getSlot()) {
+                    event.getWhoClicked().closeInventory();
+                    Bukkit.getServer().dispatchCommand(event.getWhoClicked(), command);
+                }
             }
         }
     }

@@ -34,4 +34,5 @@ public class Commands {
     public UnTrustCommand unTrustCommand = new UnTrustCommand();
     public LogsCommand logsCommand = new LogsCommand();
     public ClearDataCommand clearDataCommand = new ClearDataCommand();
+    public BiomesCommand biomesCommand = new BiomesCommand();
 }
