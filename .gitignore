@@ -140,3 +140,4 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,eclipse,visualstudiocode
 
 .idea/
+hs_err_*.log
