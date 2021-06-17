@@ -3,12 +3,12 @@ package com.iridium.iridiumskyblock.listeners;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.User;
 import com.iridium.iridiumskyblock.utils.PlayerUtils;
-import com.iridium.iridiumskyblock.utils.StringUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.time.LocalDateTime;
 
 public class PlayerJoinListener implements Listener {
 
@@ -20,6 +20,9 @@ public class PlayerJoinListener implements Listener {
 
         // Update the internal username in case of name change
         user.setName(event.getPlayer().getName());
+
+        //Update last logged in time
+        user.setLastOnlineTime(LocalDateTime.now());
 
         // Send their island border
         IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation()).ifPresent(island ->

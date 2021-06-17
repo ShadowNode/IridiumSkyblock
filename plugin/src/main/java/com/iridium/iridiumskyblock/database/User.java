@@ -40,6 +40,9 @@ public final class User {
     @DatabaseField(columnName = "join_time")
     private long joinTime;
 
+    @DatabaseField(columnName = "last_online_time")
+    private long lastOnlineTime;
+
     @DatabaseField(columnName = "island_rank")
     private @NotNull IslandRank islandRank;
 
@@ -62,6 +65,7 @@ public final class User {
         this.uuid = uuid;
         this.name = name;
         this.joinTime = 0L;
+        this.lastOnlineTime = 0L;
         this.islandRank = IslandRank.VISITOR;
     }
 
@@ -84,6 +88,7 @@ public final class User {
     public void setIsland(@Nullable Island island) {
         this.island = island == null ? null : island.getId();
         setJoinTime(LocalDateTime.now());
+        setLastOnlineTime(LocalDateTime.now());
         if (island != null) {
             IridiumSkyblock.getInstance().getDatabaseManager().getIslandTrustedTableManager().getEntries(island).stream().filter(islandTrusted ->
                     islandTrusted.getUser().equals(this)
@@ -112,4 +117,11 @@ public final class User {
         this.joinTime = ZonedDateTime.of(joinTime, ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 
+    public void setLastOnlineTime(LocalDateTime joinTime) {
+        this.lastOnlineTime = ZonedDateTime.of(joinTime, ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    public LocalDateTime getLastOnlineTime() {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(lastOnlineTime), ZoneId.systemDefault());
+    }
 }

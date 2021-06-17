@@ -9,6 +9,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -39,10 +40,9 @@ public class InfoCommand extends Command {
         if (arguments.length == 1) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
-                Optional<Island> userIsland = user.getIsland();
+                Optional<Island> userIsland = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(player.getLocation());
                 if (userIsland.isPresent()) {
-                    sendInfo(sender, userIsland.get(), user);
+                    sendInfo(sender, userIsland.get(), userIsland.get().getOwner());
                 } else {
                     sender.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().dontHaveIsland.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
@@ -80,8 +80,17 @@ public class InfoCommand extends Command {
                 .filter(user -> user != island.getOwner())
                 .map(User::getName)
                 .collect(Collectors.joining(", "));
+
         if (members.isEmpty()) {
             members = IridiumSkyblock.getInstance().getMessages().none;
+        }
+
+        String trustedMembers = IridiumSkyblock.getInstance().getDatabaseManager().getIslandTrustedTableManager().getEntries(island).stream()
+                .map(islandTrusted -> islandTrusted.getUser().getName())
+                .collect(Collectors.joining(", "));
+
+        if (trustedMembers.isEmpty()) {
+            trustedMembers = IridiumSkyblock.getInstance().getMessages().none;
         }
 
         for (String infoLine : IridiumSkyblock.getInstance().getMessages().infoCommand) {
@@ -90,8 +99,10 @@ public class InfoCommand extends Command {
                     .replace("%island_name%", island.getName())
                     .replace("%owner%", island.getOwner().getName())
                     .replace("%members%", members)
-                    .replace("%level%", String.valueOf(island.getLevel()))
+                    .replace("%trustedMembers%", trustedMembers)
                     .replace("%visitable%", island.isVisitable() ? IridiumSkyblock.getInstance().getMessages().yes : IridiumSkyblock.getInstance().getMessages().no)
+                    .replace("%island_creation%", island.getCreateTime().format(DateTimeFormatter.ofPattern(IridiumSkyblock.getInstance().getConfiguration().dateTimeFormat)))
+                    .replace("%lastonline%", requestedUser.getLastOnlineTime().format(DateTimeFormatter.ofPattern(IridiumSkyblock.getInstance().getConfiguration().dateTimeFormat)))
             ));
         }
     }

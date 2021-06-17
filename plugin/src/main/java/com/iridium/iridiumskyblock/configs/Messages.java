@@ -113,9 +113,12 @@ public class Messages {
 
     public List<String> infoCommand = Arrays.asList(
             "&8===== &b&lIsland Info for %player% &r&8=====",
-            "<GRADIENT:09C6F9>Island Name</GRADIENT:045DE9>&r: &7%island_name%",
-            "<GRADIENT:09C6F9>Island Owner</GRADIENT:045DE9>&r: &7%owner%",
-            "<GRADIENT:09C6F9>Island Members</GRADIENT:045DE9>&r: &7%members%",
-            "<GRADIENT:09C6F9>Island Visitable</GRADIENT:045DE9>&r: &7%visitable%"
+            "<SOLID:8342B5>Island Name&r: &7%island_name%",
+            "<SOLID:8342B5>Island Owner&r: &7%owner%",
+            "<SOLID:8342B5>Island Members&r: &7%members%",
+            "<SOLID:8342B5>Island Trusted Members&r: &7%trustedMembers%",
+            "<SOLID:8342B5>Island Visitable&r: &7%visitable%",
+            "<SOLID:8342B5>Island Created&r: &7%island_creation%",
+            "<SOLID:8342B5>Owner Last Login&r: &7%lastonline%"
     );
 }
