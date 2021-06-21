@@ -42,11 +42,11 @@ public class EntityDamageListener implements Listener {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
-            System.out.print("EntityDamage - " + event.getDamager().getUniqueId() + "-" + event.getDamager().getName() + "\n");
-        }
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getDamager().getUniqueId())) {
             return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("EntityDamage - " + event.getDamager().getUniqueId() + "-" + event.getDamager().getName() + "\n");
         }
         Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getEntity().getLocation());
         if (!island.isPresent()) return;

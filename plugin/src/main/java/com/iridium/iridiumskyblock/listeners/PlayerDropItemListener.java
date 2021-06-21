@@ -13,11 +13,11 @@ public class PlayerDropItemListener implements Listener {
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
-        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
-            System.out.print("EntityDrop - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
-        }
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
             return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("EntityDrop - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
         }
         Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getItemDrop().getLocation());
 

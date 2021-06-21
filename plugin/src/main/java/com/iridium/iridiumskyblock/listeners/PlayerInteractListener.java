@@ -25,11 +25,11 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
-            System.out.print("PlayerInteract - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
-        }
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
             return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("PlayerInteract - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
         }
 
         Player player = event.getPlayer();
@@ -44,7 +44,7 @@ public class PlayerInteractListener implements Listener {
 
             if (!island.isPresent()) {
                 World world = event.getClickedBlock().getLocation().getWorld();
-                if (Objects.equals(world, IridiumSkyblock.getInstance().getIslandManager().getWorld()) && !user.isBypass()) {
+                if (Objects.equals(world, IridiumSkyblock.getInstance().getIslandManager().getWorld())) {
                     event.setCancelled(true);
                 }
                 return;
@@ -100,6 +100,13 @@ public class PlayerInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
+            return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("PlayerInteractEntity - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
+        }
+
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);
         Optional<Island> island = IridiumSkyblock.getInstance().getIslandManager().getIslandViaLocation(event.getRightClicked().getLocation());

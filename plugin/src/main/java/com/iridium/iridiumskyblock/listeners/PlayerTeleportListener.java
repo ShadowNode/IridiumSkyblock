@@ -22,11 +22,11 @@ public class PlayerTeleportListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerTeleport(PlayerTeleportEvent event) {
-        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
-            System.out.print("PlayerTeleport - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
-        }
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
             return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("PlayerTeleport - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
         }
         Player player = event.getPlayer();
         if (event.getTo() != null && event.getTo().getWorld() != null) {

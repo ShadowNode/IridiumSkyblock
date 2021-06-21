@@ -17,11 +17,11 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlaceEvent(BlockPlaceEvent event) {
-        if (IridiumSkyblock.getInstance().getConfiguration().debugFakePlayers) {
-            System.out.print("BlockPlace - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
-        }
         if (IridiumSkyblock.getInstance().getConfiguration().fakePlayers.contains(event.getPlayer().getUniqueId())) {
             return;
+        }
+        if (IridiumSkyblock.getInstance().getConfiguration().debug) {
+            System.out.print("BlockPlace - " + event.getPlayer().getUniqueId() + "-" + event.getPlayer().getName() + "\n");
         }
         Player player = event.getPlayer();
         User user = IridiumSkyblock.getInstance().getUserManager().getUser(player);

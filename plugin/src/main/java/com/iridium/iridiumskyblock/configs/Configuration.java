@@ -41,8 +41,14 @@ public class Configuration {
             //Minecraft
             UUID.fromString("41c82c87-7afb-4024-ba57-13d2c99cae77"),
             //null profiles
-            UUID.fromString("00000000-0000-0000-0000-000000000000"));
-    public boolean debugFakePlayers = false;
+            UUID.fromString("00000000-0000-0000-0000-000000000000"),
+            // cyclic.fake_player.forester
+            UUID.fromString("2ddba0d0-4f50-444b-a6fd-7405ce7393aa"),
+            // cyclic.fake_player.forester
+            UUID.fromString("f5878602-e730-4766-98a5-051db4bf3c5d"),
+            // IntegratedTunnels
+            UUID.fromString("41c82c87-7afb-4024-bb57-13d2c99cae77"));
+    public boolean debug = false;
     public GeneratorSettings generatorSettings = new GeneratorSettings();
 
     /**
