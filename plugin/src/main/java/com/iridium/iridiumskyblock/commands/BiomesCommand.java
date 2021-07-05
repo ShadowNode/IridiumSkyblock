@@ -1,12 +1,11 @@
 package com.iridium.iridiumskyblock.commands;
 
-import com.iridium.iridiumskyblock.BiomesList;
+import com.iridium.iridiumskyblock.SBiome;
 import com.iridium.iridiumskyblock.IridiumSkyblock;
 import com.iridium.iridiumskyblock.database.Island;
 import com.iridium.iridiumskyblock.database.User;
 import com.iridium.iridiumskyblock.gui.InventoryConfigGUI;
 import com.iridium.iridiumskyblock.utils.StringUtils;
-import org.bukkit.block.Biome;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -44,9 +43,9 @@ public class BiomesCommand extends Command {
             if (args.length != 2) {
                 player.openInventory(new InventoryConfigGUI(IridiumSkyblock.getInstance().getInventories().islandBiomes).getInventory());
             } else {
-                BiomesList biomes = BiomesList.getBiomes(args[1]);
-                if (biomes != null) {
-                    biomes.replaceRegionBiomes(island.get(),player, Biome.valueOf(biomes.toString().toUpperCase()));
+                SBiome biome = SBiome.getBiome(args[1]);
+                if (biome != null) {
+                    biome.replaceRegionBiomes(island.get(),player, biome.getBukkitBiome());
                 } else {
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().notABiome.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
@@ -67,6 +66,6 @@ public class BiomesCommand extends Command {
      */
     @Override
     public List<String> onTabComplete(CommandSender commandSender, org.bukkit.command.Command command, String label, String[] args) {
-        return Arrays.stream(BiomesList.values()).map(Enum::name).collect(Collectors.toList());
+        return Arrays.stream(SBiome.values()).map(Enum::name).collect(Collectors.toList());
     }
 }
