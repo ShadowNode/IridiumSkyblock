@@ -65,7 +65,7 @@ public class PlayerInteractListener implements Listener {
                     event.setCancelled(true);
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotUseRedstone.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                 }
-            } else if (event.getItem() != null && event.getClickedBlock().getType().equals(Material.OBSIDIAN) && event.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
+            } else if (event.getItem() != null && event.getClickedBlock().getType().equals(Material.OBSIDIAN) && event.getItem().getType().equals(Material.FLINT_AND_STEEL) && !IridiumSkyblock.getInstance().getConfiguration().disableCustomNetherPortal) {
                 if (!event.getPlayer().getWorld().equals(IridiumSkyblock.getInstance().getIslandManager().getWorld()) || !IridiumSkyblock.getInstance().getIslandManager().getIslandPermission(island.get(), user, IridiumSkyblock.getInstance().getPermissions().spawnPortal, "portal")) {
                     player.sendMessage(StringUtils.color(IridiumSkyblock.getInstance().getMessages().cannotUseSpawnPortal.replace("%prefix%", IridiumSkyblock.getInstance().getConfiguration().prefix)));
                     event.setCancelled(true);

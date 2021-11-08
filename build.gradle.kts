@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.iridium"
-version = "3.0.13"
+version = "3.0.14"
 description = "IridiumSkyblock"
 
 allprojects {
@@ -25,8 +25,9 @@ allprojects {
         maven("https://jitpack.io")
         maven("https://repo.rosewooddev.io/repository/public/")
         maven("https://nexus.savagelabs.net/repository/maven-releases/")
+        maven("https://nexus.iridiumdevelopment.net/repository/maven-releases/")
         maven("https://papermc.io/repo/repository/maven-public/")
-        maven("https://repo.jeff-media.de/maven2/")
+        maven("https://hub.jeff-media.com/nexus/repository/jeff-media-public/")
     }
 
     dependencies {

@@ -25,6 +25,7 @@ public class Configuration {
 
     public boolean defaultIslandPublic = true;
     public boolean voidTeleport = true;
+    public boolean disableCustomNetherPortal = false;
 
     public int schematicPastingDelay = 1;
     public int teleportDelay = 0;
